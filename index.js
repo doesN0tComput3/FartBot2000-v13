@@ -3,7 +3,7 @@ const client = new Discord.Client();
 const { prefix, token, fart_facts } = require('./config.json');
 
 client.once('ready', () => {
-    console.log('i\'m back bitches');
+    console.log('i\'m back lol');
     client.user.setPresence({
     activity: { name: 'BAKI BAKI' }
     });
@@ -29,4 +29,4 @@ client.on('message', message => {
     } else if (message.content === 'tendou are you a doctor') {
         message.channel.send('no, but you should go to one')
     }
-});
+})
