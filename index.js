@@ -22,7 +22,7 @@ client.login(token);
 
 for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
-    client.comands.set(command.name, command);
+    client.commands.set(command.name, command);
 
     if (!client.commands.has(command)) return;
     try {
