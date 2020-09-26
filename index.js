@@ -1,10 +1,8 @@
 const Discord = require('discord.js');
-const fs = require('fs');
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 const {
     prefix,
     token,
@@ -20,6 +18,7 @@ client.once('ready', () => {
 
 client.login(token);
 
+<<<<<<< HEAD
 for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
     client.commands.set(command.name, command);
@@ -33,8 +32,12 @@ for (const file of commandFiles) {
     }
 }
 
+=======
+>>>>>>> 349287b43933093a8ca0cf14b5a25fe7937f1c57
 client.on('message', message => {
-    if (message.content === 'i love you tendou') {
+    if (message.content === 'ping') {
+        message.channel.send(`pong bitch\nLatency is ${m.createdTimestamp - message.createdTimestamp}ms\nAPI latency is ${Math.round(client.ping)}ms`);
+    } else if (message.content === 'i love you tendou') {
         message.channel.send(`i love you too ${message.author} :kissing_heart:`);
     } else if (message.content === 'you\'re so amazing tendou') {
         message.channel.send(`you look even better ${message.author}`);
