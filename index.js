@@ -18,22 +18,6 @@ client.once('ready', () => {
 
 client.login(token);
 
-<<<<<<< HEAD
-for (const file of commandFiles) {
-    const command = require(`./commands/${file}`);
-    client.commands.set(command.name, command);
-
-    if (!client.commands.has(command)) return;
-    try {
-        client.commands.get(command).execute(message, args);
-    } catch (error) {
-        console.error(error)
-        message.channel.send(`Sorry ${message.author}, something went wrong :(`);
-    }
-}
-
-=======
->>>>>>> 349287b43933093a8ca0cf14b5a25fe7937f1c57
 client.on('message', message => {
     if (message.content === 'ping') {
         message.channel.send(`pong bitch\nLatency is ${m.createdTimestamp - message.createdTimestamp}ms\nAPI latency is ${Math.round(client.ping)}ms`);
