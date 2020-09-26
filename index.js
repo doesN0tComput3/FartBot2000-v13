@@ -5,7 +5,7 @@ const { prefix, token, fart_facts } = require('./config.json');
 client.once('ready', () => {
     console.log('i\'m back lol');
     client.user.setPresence({
-    activity: { name: 'BAKI BAKI' }
+        activity: { name: 'BAKI BAKI' },
     });
 });
 
@@ -23,10 +23,12 @@ client.on('message', message => {
     } else if (message.content === 'fart fact') {
         message.channel.send(`Fart fact: ${fart_facts[Math.floor(Math.random() * fart_facts.length)]}`);
     } else if (message.content === 'hey tendou' || message.content === 'hi tendou') {
-        message.channel.send(`hey ${message.author} :smirk:`)
+        message.channel.send(`hey ${message.author} :smirk:`);
     } else if (message.content === 'tendou where can i buy drugs') {
-        message.channel.send(`don't buy drugs ${message.author}`)
+        message.channel.send(`don't buy drugs ${message.author}`);
     } else if (message.content === 'tendou are you a doctor') {
-        message.channel.send('no, but you should go to one')
+        message.channel.send('no, but you should go to one');
+    } else if (message.content === 'baki baki ni ore') {
+        message.channel.send('nani wo? kokoro wo da yo');
     }
-})
+});
