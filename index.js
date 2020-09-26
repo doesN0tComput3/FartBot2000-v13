@@ -1,6 +1,15 @@
 const Discord = require('discord.js');
+const fs = require('fs');
+
 const client = new Discord.Client();
-const { prefix, token, fart_facts } = require('./config.json');
+client.commands = new Discord.Collection();
+
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+const {
+    prefix,
+    token,
+    fart_facts
+} = require('./config.json');
 
 client.once('ready', () => {
     console.log('i\'m back lol');
@@ -11,10 +20,21 @@ client.once('ready', () => {
 
 client.login(token);
 
+for (const file of commandFiles) {
+    const command = require(`./commands/${file}`);
+    client.comands.set(command.name, command);
+
+    if (!client.commands.has(command)) return;
+    try {
+        client.commands.get(command).execute(message, args);
+    } catch (error) {
+        console.error(error)
+        message.channel.send(`Sorry ${message.author}, something went wrong :(`);
+    }
+}
+
 client.on('message', message => {
-    if (message.content === `${prefix}ping`) {
-        message.channel.send('pong bitch');
-    } else if (message.content === 'i love you tendou') {
+    if (message.content === 'i love you tendou') {
         message.channel.send(`i love you too ${message.author} :kissing_heart:`);
     } else if (message.content === 'you\'re so amazing tendou') {
         message.channel.send(`you look even better ${message.author}`);
