@@ -17,8 +17,7 @@ client.once('ready', () => {
     // Set activity to my song
     client.user.setActivity('BAKI BAKI', { type: 'LISTENING'})
 
-    // Send message in server to let others know I'm back
-    mainChannel.send('i\'m back bitches :stuck_out_tongue_winking_eye:');
+    // Send message in server to let others know I'm back (add)
 });
 
 // Login to bot (duh)
