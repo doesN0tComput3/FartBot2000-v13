@@ -24,9 +24,9 @@ client.once('ready', () => {
 client.login(token);
 
 // THE COMMANDS!!!
-client.on('message', message => {
+client.on('message', async message => {
     // Ping command
-    if (message.content === 'ping') {
+    if (message.content === `${prefix}ping`) {
         const m = await message.channel.send('pong bitch');
         m.edit(`pong bitch\nLatency is ${m.createdTimestamp - message.createdTimestamp}ms\nAPI Latency is ${Math.round(client.ping)}ms`);
     // Regular message commands
