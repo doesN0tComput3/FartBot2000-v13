@@ -27,7 +27,8 @@ client.login(token);
 client.on('message', message => {
     // Ping command
     if (message.content === 'ping') {
-        message.channel.send(`pong bitch\nLatency is ${m.createdTimestamp - message.createdTimestamp}ms\nAPI latency is ${Math.round(client.ping)}ms`);
+        const m = await message.channel.send('pong bitch');
+        m.edit(`pong bitch\nLatency is ${m.createdTimestamp - message.createdTimestamp}ms\nAPI Latency is ${Math.round(client.ping)}ms`);
     // Regular message commands
     } else if (message.content === 'i love you tendou') {
         message.channel.send(`i love you too ${message.author} :kissing_heart:`);
