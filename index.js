@@ -63,5 +63,7 @@ client.on('message', async message => {
     // Reply (inputs and outputs)
     } else if (responses[message.content]) {
         message.channel.send(responses[message.content]);
+    } else if (message.author.id === config.kota && message.content === 'Fuck you tendou') {
+        message.channel.send(`fuck you ${message.author}`);
     }
 });
