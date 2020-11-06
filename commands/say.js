@@ -1,12 +1,12 @@
 module.exports = {
-	name: 'say',
+    name: 'say',
     description: 'Repeats what you say.',
     category: 'fun',
     args: true,
 	execute(message, args) {
-        message.delete();
-        const sayText = args.join(" ");
-
-        message.channel.send(sayText);
+	    const sayText = args.join(" ");
+	
+	    const channel = message.client.channels.cache.find(channel => channel.id === '749084221024239717');
+	    channel.send(sayText)
 	},
 };
