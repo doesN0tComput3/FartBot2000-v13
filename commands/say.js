@@ -4,6 +4,7 @@ module.exports = {
     category: 'fun',
     args: true,
     execute(message, args) {
+        message.delete();
         const sayText = args.join(' ');
 
         const channel = message.client.channels.cache.find(channel => channel.id === '749084221024239717');

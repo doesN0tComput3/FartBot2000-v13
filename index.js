@@ -12,7 +12,7 @@ for (const file of commandFiles) {
 }
 
 client.once('ready', () => {
-	console.log('Ready!');
+	console.log('hey i returned');
 
 	client.user.setPresence({
 		activity: {
@@ -20,6 +20,9 @@ client.once('ready', () => {
 			type: 'LISTENING'
 		}
 	});
+
+	const channel = client.channels.cache.find(channel => channel.id === '749084221024239717');
+        channel.send('i\'m back bitches');
 });
 
 client.on('message', message => {
