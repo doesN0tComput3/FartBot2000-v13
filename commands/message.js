@@ -19,7 +19,7 @@ module.exports = {
             .setColor('#00FFFF')
             .setTitle('1 new message!')
             .setDescription('You have one new message...')
-            .addField('Message', text, true)
+            .addField('**Message**', text, true)
             .setFooter('FartBot2000', message.client.user.avatarURL());
 
         message.client.users.cache.get(receiverId).send(textEmbed)
@@ -34,7 +34,7 @@ module.exports = {
             .setDescription(`Your message to ${receiver} has been sent.`)
             .addField('**Message**', `${text}`, true)
             .setThumbnail(`${receiver.avatarURL()}`)
-            .setFooter('FartBot2000', message.author.avatarURL());
+            .setFooter('FartBot2000', message.client.user.avatarURL());
 
         message.author.send(senderEmbed);
     }

@@ -16,7 +16,7 @@ client.once('ready', () => {
 
 	client.user.setPresence({
 		activity: {
-			name: 'you fart 😋',
+			name: 'you fart 😋 | !help',
 			type: 'LISTENING'
 		}
 	});
