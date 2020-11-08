@@ -30,6 +30,6 @@ module.exports = {
             .addField('**Question**', question, true)
             .setFooter('FartBot2000', message.client.user.avatarURL());
 
-        message.channel.send(embed);
+        message.author.send(embed);
     }
 };
