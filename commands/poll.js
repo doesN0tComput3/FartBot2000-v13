@@ -7,6 +7,7 @@ module.exports = {
     usage: '[question]',
     args: true,
     execute(message, args) {
+        message.delete();
         const question = args.join(' ');
 
         const pollEmbed = new Discord.MessageEmbed()
