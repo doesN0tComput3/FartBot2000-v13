@@ -6,7 +6,7 @@ module.exports = {
     category: 'fun',
     usage: '[question]',
     args: true,
-    execute(message, args) {
+    execute(client, message, args) {
         message.delete();
         const question = args.join(' ');
 
@@ -16,9 +16,9 @@ module.exports = {
             .addField('**Question**', question, true)
             .addField('**Poll Started By**', message.author)
             .setThumbnail(message.author.avatarURL)
-            .setFooter('FartBot2000', message.client.user.avatarURL());
+            .setFooter('FartBot2000', client.user.avatarURL());
 
-        const channel = message.client.channels.cache.find(channel => channel.id === '749084221024239717');
+        const channel = client.channels.cache.find(channel => channel.id === '749084221024239717');
         channel.send(pollEmbed).then(messageReaction => {
             messageReaction.react('👍');
             messageReaction.react('👎');
@@ -29,7 +29,7 @@ module.exports = {
             .setTitle('Poll created!')
             .setDescription('Your poll was created.')
             .addField('**Question**', question, true)
-            .setFooter('FartBot2000', message.client.user.avatarURL());
+            .setFooter('FartBot2000', client.user.avatarURL());
 
         message.author.send(embed);
     }

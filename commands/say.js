@@ -1,4 +1,7 @@
 const Discord = require('discord.js');
+const config = require('../config.json');
+const channel = config.channel;
+
 
 module.exports = {
     name: 'say',
@@ -6,11 +9,10 @@ module.exports = {
     category: 'fun',
     usage: '[message]',
     args: true,
-    execute(message, args) {
+    execute(client, message, args) {
         if (!message.channel.type === 'dm') message.delete();
         const sayText = args.join(' ');
 
-        const channel = message.client.channels.cache.find(channel => channel.id === '749084221024239717');
         channel.send(sayText);
 
         const embed = new Discord.MessageEmbed()
@@ -19,7 +21,7 @@ module.exports = {
             .setDescription('Your message was successfully sent.')
             .addField('**Message**', sayText, true)
             .setThumbnail(message.author.avatarURL())
-            .setFooter('FartBot2000', message.client.user.avatarURL());
+            .setFooter('FartBot2000', client.user.avatarURL());
 
         message.author.send(embed);
     }

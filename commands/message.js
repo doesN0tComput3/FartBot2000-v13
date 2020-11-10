@@ -7,7 +7,7 @@ module.exports = {
     category: 'fun',
     usage: '[@user] [message]',
     args: true,
-    execute(message, args) {
+    execute(client, message, args) {
         message.delete();
         const receiver = message.mentions.users.first();
         if (!receiver) return message.author.send('i couldn\'t find that user :(');
@@ -20,9 +20,9 @@ module.exports = {
             .setTitle('1 new message!')
             .setDescription('You have one new message...')
             .addField('**Message**', text, true)
-            .setFooter('FartBot2000', message.client.user.avatarURL());
+            .setFooter('FartBot2000', client.user.avatarURL());
 
-        message.client.users.cache.get(receiverId).send(textEmbed)
+        client.users.cache.get(receiverId).send(textEmbed)
             .catch(error => {
                 message.author.send(`I couldn't send ${receiver} a message, most likely their dm's are off`);
                 console.log(error);
@@ -34,7 +34,7 @@ module.exports = {
             .setDescription(`Your message to ${receiver} has been sent.`)
             .addField('**Message**', `${text}`, true)
             .setThumbnail(`${receiver.avatarURL()}`)
-            .setFooter('FartBot2000', message.client.user.avatarURL());
+            .setFooter('FartBot2000', client.user.avatarURL());
 
         message.author.send(senderEmbed);
     }
