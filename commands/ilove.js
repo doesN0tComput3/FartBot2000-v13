@@ -1,11 +1,10 @@
 const Discord = require('discord.js');
 
 module.exports = {
-    name: 'love',
-    aliases: ['loveaffinity'],
-    description: 'How much does this person love you?\nYou don\'t have to @ someone, but you can if you want!',
+    name: 'ilove',
+    description: 'How much do YOU love *that* person?\nBasically !love but in reverse.',
     category: 'fun',
-    usage: 'person',
+    usage: '[person]',
     args: true,
     execute(message, args) {
         const person = args.join(' ');
@@ -16,8 +15,8 @@ module.exports = {
 
         const embed = new Discord.MessageEmbed()
             .setColor('RANDOM')
-            .setTitle(`**How much does ${person} love ${message.author.username}?**`)
-            .setDescription(`**${person}** loves **${message.author.username}** this much:\n**${Math.floor(love)}%\n${loveLevel}**`)
+            .setTitle(`**How much does ${message.author.username} love ${person}?**`)
+            .setDescription(`**${message.author.username}** loves **${person}** this much:\n**${Math.floor(love)}%\n${loveLevel}**`)
             .setThumbnail(message.author.avatarURL())
             .setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 
