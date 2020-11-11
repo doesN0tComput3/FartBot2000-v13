@@ -21,7 +21,7 @@ module.exports = {
             .setDescription('Your message was successfully sent.')
             .addField('**Message**', sayText, true)
             .setThumbnail(message.author.avatarURL())
-            .setFooter('FartBot2000', client.user.avatarURL());
+            .setFooter('FartBot2000', message.client.user.avatarURL());
 
         message.author.send(embed);
     }
