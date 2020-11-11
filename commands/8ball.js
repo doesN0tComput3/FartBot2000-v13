@@ -7,7 +7,7 @@ module.exports = {
     category: 'fun',
     usage: '[question]',
     args: true,
-    execute(client, message, args) {
+    execute(message, args) {
         if (!args) return message.reply('ask a question you dumbass');
 
         const result = Math.floor((Math.random() * config.responses.length));
@@ -18,7 +18,7 @@ module.exports = {
             .setTitle('8-Ball')
             .addField('**Question**', question, true)
             .addField('**Answer**', config.responses[result])
-            .setFooter('FartBot2000', client.user.avatarURL());
+            .setFooter('FartBot2000', message.client.user.avatarURL());
             if (result === 0 || result === 1 || result === 2 || result === 3 || result === 4 || result === 5 || result === 6 || result === 7 || result === 8 || result === 9) {
                 embed.setColor('#39ff14');
             } else if (result === 10 || result === 11 || result === 12 || result === 13 || result === 14) {

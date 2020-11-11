@@ -9,7 +9,7 @@ module.exports = {
     category: 'fun',
     usage: '[message]',
     args: true,
-    execute(client, message, args) {
+    execute(message, args) {
         if (!message.channel.type === 'dm') message.delete();
         const sayText = args.join(' ');
 

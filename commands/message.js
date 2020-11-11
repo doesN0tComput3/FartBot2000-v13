@@ -7,7 +7,7 @@ module.exports = {
     category: 'fun',
     usage: '[@user] [message]',
     args: true,
-    execute(client, message, args) {
+    execute(message, args) {
         message.delete();
         const receiver = message.mentions.users.first();
         if (!receiver) return message.author.send('i couldn\'t find that user :(');
