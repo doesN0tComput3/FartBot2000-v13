@@ -16,11 +16,11 @@ module.exports = {
         const text = args.slice(1).join(' ');
 
         const textEmbed = new Discord.MessageEmbed()
-            .setColor('#00FFFF')
+            .setColor('RANDOM')
             .setTitle('1 new message!')
             .setDescription('You have one new message...')
             .addField('**Message**', text, true)
-            .setFooter('FartBot2000', message.client.user.avatarURL());
+            .setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 
         message.client.users.cache.get(receiverId).send(textEmbed)
             .catch(error => {
@@ -34,7 +34,7 @@ module.exports = {
             .setDescription(`Your message to ${receiver} has been sent.`)
             .addField('**Message**', `${text}`, true)
             .setThumbnail(`${receiver.avatarURL()}`)
-            .setFooter('FartBot2000', message.client.user.avatarURL());
+            .setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 
         message.author.send(senderEmbed);
     }
