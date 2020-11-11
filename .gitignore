@@ -1,5 +1,2 @@
 node_modules/
 format.js
-commands/daily.js
-commands/register.js
-DB/users.json
