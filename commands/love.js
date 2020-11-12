@@ -17,7 +17,7 @@ module.exports = {
         const embed = new Discord.MessageEmbed()
             .setColor('RANDOM')
             .setTitle(`**How much does ${person} love ${message.author.username}?**`)
-            .setDescription(`**${person}** loves **${message.author.username}** this much:\n**${Math.floor(love)}%\n${loveLevel}**`)
+            .setDescription(`**${person}** loves **${message.author.username}** this much:\n\n**${Math.floor(love)}%\n${loveLevel}**`)
             .setThumbnail(message.author.avatarURL())
             .setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 
