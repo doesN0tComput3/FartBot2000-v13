@@ -22,6 +22,7 @@ module.exports = {
                 fs.writeFileSync('./DB/users.json', JSON.stringify(UserJSON));
 
                 const successEmbed = new Discord.MessageEmbed()
+                    .setColor('#39ff14')
                     .setTitle('**SUCCESS**')
                     .setDescription('You have claimed a daily reward of 500 FartCoins!')
                     .setThumbnail(message.author.avatarURL())
