@@ -18,8 +18,7 @@ module.exports = {
             .setThumbnail(message.author.avatarURL)
             .setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 
-        const channel = message.client.channels.cache.find(channel => channel.id === '749084221024239717');
-        channel.send(pollEmbed).then(messageReaction => {
+        message.channel.send(pollEmbed).then(messageReaction => {
             messageReaction.react('👍');
             messageReaction.react('👎');
         });
