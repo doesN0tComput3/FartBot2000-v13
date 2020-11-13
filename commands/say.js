@@ -1,7 +1,4 @@
 const Discord = require('discord.js');
-const config = require('../config.json');
-const channel = config.channel;
-
 
 module.exports = {
     name: 'say',
@@ -12,6 +9,7 @@ module.exports = {
     execute(message, args) {
         if (!message.channel.type === 'dm') message.delete();
         const sayText = args.join(' ');
+        const channel = message.client.channels.cache.find(channel => channel.id === '749084221024239717');
 
         channel.send(sayText);
 

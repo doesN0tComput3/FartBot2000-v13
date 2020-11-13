@@ -9,6 +9,17 @@ module.exports = {
     execute(message) {
         const UserJSON = JSON.parse(fs.readFileSync('./DB/users.json'));
 
+        if (UserJSON[message.author.id]) {
+            const errorEmbed = new Discord.MessageEmbed()
+                .setColor('#ff0000')
+                .setTitle('**Error!**')
+                .setDescription('You\'re already registered into the system, you cheater!')
+                .setThumbnail(message.author.avatarURL())
+                .setFooter('FartBot2000 | !help', message.client.user.avatarURL());
+
+            return message.channel.send(errorEmbed);
+        }
+
         UserJSON[message.author.id] = {
             bal: 50,
             lastclaim: 0
