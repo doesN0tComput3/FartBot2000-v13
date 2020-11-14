@@ -8,7 +8,9 @@ module.exports = {
         if (!message.channel.type === 'dm') {
             message.delete();
             const sayText = args.join(' ');
-            message.channel.send(sayText);
+            const channel = message.client.channels.cache.find(channel => channel.id === '749084221024239717');
+
+            channel.send(sayText);
         } else {
             const sayText = args.join(' ');
             message.channel.send(sayText);
