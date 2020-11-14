@@ -46,7 +46,7 @@ client.on('message', message => {
 		const levelUpEmbed = new Discord.MessageEmbed()
 			.setColor('#39ff14')
 			.setTitle('**LEVEL UP!**')
-			.setDescription(`You just leveled up to **level ${currentLevel + 1}!**`)
+			.setDescription(`${message.author} just leveled up to **level ${currentLevel + 1}!**`)
 			.setThumbnail(`${message.author.avatarURL()}`)
 			.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 		message.channel.send(levelUpEmbed);
