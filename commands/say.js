@@ -1,5 +1,3 @@
-const Discord = require('discord.js');
-
 module.exports = {
     name: 'say',
     description: 'Repeats what you say',
@@ -13,7 +11,7 @@ module.exports = {
             message.channel.send(sayText);
         } else {
             const sayText = args.join(' ');
-            message.channel.send(sayText)
+            message.channel.send(sayText);
         }
     }
 };
