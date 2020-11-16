@@ -67,7 +67,7 @@ client.on('message', message => {
 	xp[message.author.id].xp = currentXp + xpAdd;
 	const needed = getNeededXP(currentLevel);
 
-	if (xp[message.author.id].xp >= needed) {
+	if (xp[message.author.id].xp <= needed) {
 		xp[message.author.id].level = currentLevel + 1;
 		xp[message.author.id].xp -= needed;
 		const levelUpEmbed = new Discord.MessageEmbed()
