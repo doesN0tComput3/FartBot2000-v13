@@ -23,6 +23,32 @@ client.once('ready', () => {
 	});
 });
 
+client.on('guildMemberAdd', (member) => {
+	const channel = client.channels.cache.find(channel => channel.id === '749084221024239717');
+
+	const welcomeEmbed = new Discord.MessageEmbed()
+		.setColor('RANDOM')
+		.setTitle(`Welcome, ${member.username}!`)
+		.setDescription('Give them a warm welcome ig 🙄')
+		.setThumbnail(member.avatarURL())
+		.setFooter('FartBot2000 | !help', client.user.avatarURL());
+
+	channel.send(welcomeEmbed);
+});
+
+client.on('guildMemberRemove', (member) => {
+	const channel = client.channels.cache.find(channel => channel.id === '749084221024239717');
+
+	const goodbyeEmbed = new Discord.MessageEmbed()
+		.setColor('RANDOM')
+		.setTitle(`Bye ${member.username}...`)
+		.setDescription('What did ya\'ll do to make them leave 😭🤦‍♂️\nThey we\'re probably kicked lmao 💀')
+		.setThumbnail(member.avatarURL())
+		.setFooter('FartBot2000 | !help', client.user.avatarURL());
+
+	channel.send(goodbyeEmbed);
+});
+
 client.on('message', message => {
 	if (message.author.bot) return;
 
