@@ -5,8 +5,8 @@ module.exports = {
     usage: '[message]',
     args: true,
     execute(message, args) {
+        message.delete();
         if (!message.channel.type === 'dm') {
-            message.delete();
             const sayText = args.join(' ');
             const channel = message.client.channels.cache.find(channel => channel.id === '749084221024239717');
 

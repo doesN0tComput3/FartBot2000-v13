@@ -27,7 +27,6 @@ client.on('message', message => {
 	if (message.author.bot) return;
 
 	const xpAdd = Math.floor(Math.random() * 7) + 8;
-	console.log(xpAdd);
 
 	if (!xp[message.author.id]) {
 		xp[message.author.id] = {
@@ -37,19 +36,23 @@ client.on('message', message => {
 	}
 
 	const currentXp = xp[message.author.id].xp;
+	const getNeededXP = (level) => level * level * 100;
 	const currentLevel = xp[message.author.id].level;
-	const nextLevel = xp[message.author.id].level * 150;
 	xp[message.author.id].xp = currentXp + xpAdd;
+	const needed = getNeededXP(currentLevel);
 
-	if (nextLevel <= xp[message.author.id].xp) {
+	if (xp[message.author.id].xp >= needed) {
 		xp[message.author.id].level = currentLevel + 1;
+		xp[message.author.id].xp -= needed;
 		const levelUpEmbed = new Discord.MessageEmbed()
 			.setColor('#39ff14')
 			.setTitle('**LEVEL UP!**')
-			.setDescription(`${message.author} just leveled up to **level ${currentLevel + 1}!**`)
+			.setDescription(`${message.author} just leveled up to **level ${currentLevel + 1}!**\nThey now need **${getNeededXP(currentLevel)} XP** to level up.`)
 			.setThumbnail(`${message.author.avatarURL()}`)
 			.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
-		message.channel.send(levelUpEmbed);
+
+		const channel = message.client.channels.cache.find(channel => channel.id === '777761493285732362');
+		channel.send(levelUpEmbed);
 	}
 
 	fs.writeFile('./xp.json', JSON.stringify(xp), (err) => {
