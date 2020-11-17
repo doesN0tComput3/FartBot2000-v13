@@ -52,12 +52,12 @@ client.on('guildMemberRemove', (member) => {
 client.on('message', message => {
 	if (message.author.bot) return;
 
-	const xpAdd = Math.floor(Math.random() * 7) + 8;
+	const xpAdd = Math.floor(Math.random() * 15) + 25;
 
 	if (!xp[message.author.id]) {
 		xp[message.author.id] = {
 			xp: 0,
-			level: 0
+			level: 1
 		};
 	}
 
@@ -72,7 +72,8 @@ client.on('message', message => {
 		const levelUpEmbed = new Discord.MessageEmbed()
 			.setColor('#39ff14')
 			.setTitle('**LEVEL UP!**')
-			.setDescription(`${message.author} just leveled up to **level ${currentLevel + 1}!**\nThey now need **${getNeededXP(currentLevel)} XP** to level up.`)
+			.setDescription(`${message.author} just leveled up to **level ${currentLevel + 1}!**\nThey now need **${getNeededXP(currentLevel + 1)} XP** to level up.`)
+			.addField('XP', xp[message.author.id].xp)
 			.setThumbnail(`${message.author.avatarURL()}`)
 			.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 
