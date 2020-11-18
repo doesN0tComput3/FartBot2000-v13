@@ -15,10 +15,12 @@ module.exports = {
             .setTitle('Poll')
             .addField('**Question**', question, true)
             .addField('**Poll Started By**', message.author)
-            .setThumbnail(message.author.avatarURL)
+            .setThumbnail(message.author.avatarURL())
             .setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 
-        message.channel.send(pollEmbed).then(messageReaction => {
+        const channel = message.client.channels.cache.find(channel => channel.id === '749084221024239717');
+
+        channel.send(pollEmbed).then(messageReaction => {
             messageReaction.react('👍');
             messageReaction.react('👎');
         });

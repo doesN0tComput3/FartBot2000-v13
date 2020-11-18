@@ -2,6 +2,7 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const { prefix, token } = require('./config.json');
 const xp = require('./xp.json');
+const channel = client.channels.cache.find(channel => channel.id === '749084221024239717');
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -24,8 +25,6 @@ client.once('ready', () => {
 });
 
 client.on('guildMemberAdd', (member) => {
-	const channel = client.channels.cache.find(channel => channel.id === '749084221024239717');
-
 	const welcomeEmbed = new Discord.MessageEmbed()
 		.setColor('RANDOM')
 		.setTitle(`Welcome, ${member.username}!`)
@@ -37,8 +36,6 @@ client.on('guildMemberAdd', (member) => {
 });
 
 client.on('guildMemberRemove', (member) => {
-	const channel = client.channels.cache.find(channel => channel.id === '749084221024239717');
-
 	const goodbyeEmbed = new Discord.MessageEmbed()
 		.setColor('RANDOM')
 		.setTitle(`Bye ${member.username}...`)
@@ -76,8 +73,8 @@ client.on('message', message => {
 			.setThumbnail(`${message.author.avatarURL()}`)
 			.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 
-		const channel = message.client.channels.cache.find(channel => channel.id === '777761493285732362');
-		channel.send(levelUpEmbed);
+		const xpChannel = message.client.channels.cache.find(channel => channel.id === '777761493285732362');
+		xpChannel.send(levelUpEmbed);
 	}
 
 	fs.writeFile('./xp.json', JSON.stringify(xp), (err) => {
