@@ -23,8 +23,8 @@ module.exports = {
             .setColor('RANDOM')
             .setTitle(`${message.author.username}'s Stats`)
             .setDescription(`You need **${difference} XP** until your next level up.`)
-            .addField('Level', currentLevel, true)
-            .addField('XP', currentXp, true)
+            .addField('Level', `**${currentLevel}**`, true)
+            .addField('XP', `**${currentXp} XP**`, true)
             .setThumbnail(message.author.avatarURL())
             .setFooter('FartBot2000 | !help', message.client.user.avatarURL());
         message.channel.send(embed);
