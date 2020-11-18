@@ -67,7 +67,7 @@ client.on('message', message => {
 	}
 
 	const currentXp = xp[message.author.id].xp;
-	const getNeededXP = (level) => level * 200;
+	const getNeededXP = (level) => level * 100;
 	const currentLevel = xp[message.author.id].level;
 	xp[message.author.id].xp = currentXp + xpAdd;
 	const needed = getNeededXP(currentLevel);
