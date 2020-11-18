@@ -4,8 +4,8 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const { prefix, token } = require('./config.json');
 const xp = require('./xp.json');
-const channel = client.channels.cache.find(channel => channel.id === '749084221024239717');
 const client = new Discord.Client();
+const channel = client.channels.cache.find(channel => channel.id === '749084221024239717');
 
 // Find our commands
 client.commands = new Discord.Collection();
