@@ -1,18 +1,21 @@
+// FartBot2000
+// Define variables
 const fs = require('fs');
 const Discord = require('discord.js');
 const { prefix, token } = require('./config.json');
 const xp = require('./xp.json');
 const channel = client.channels.cache.find(channel => channel.id === '749084221024239717');
-
 const client = new Discord.Client();
+
+// Find our commands
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 	client.commands.set(command.name, command);
 }
 
+// When the bot is on, log it in the console and set status
 client.once('ready', () => {
 	console.log('hey i returned');
 
@@ -24,6 +27,7 @@ client.once('ready', () => {
 	});
 });
 
+// Welcome message
 client.on('guildMemberAdd', (member) => {
 	const welcomeEmbed = new Discord.MessageEmbed()
 		.setColor('RANDOM')
@@ -35,6 +39,7 @@ client.on('guildMemberAdd', (member) => {
 	channel.send(welcomeEmbed);
 });
 
+// Goodbye message
 client.on('guildMemberRemove', (member) => {
 	const goodbyeEmbed = new Discord.MessageEmbed()
 		.setColor('RANDOM')
@@ -46,9 +51,12 @@ client.on('guildMemberRemove', (member) => {
 	channel.send(goodbyeEmbed);
 });
 
+// Where it all happens 😏
 client.on('message', message => {
+	// Return if the message is from a bot
 	if (message.author.bot) return;
 
+	// XP system
 	const xpAdd = Math.floor(Math.random() * 15) + 25;
 
 	if (!xp[message.author.id]) {
@@ -64,6 +72,7 @@ client.on('message', message => {
 	xp[message.author.id].xp = currentXp + xpAdd;
 	const needed = getNeededXP(currentLevel);
 
+	// Level up message
 	if (xp[message.author.id].xp >= needed) {
 		xp[message.author.id].level = currentLevel + 1;
 		const levelUpEmbed = new Discord.MessageEmbed()
@@ -78,12 +87,16 @@ client.on('message', message => {
 		xpChannel.send(levelUpEmbed);
 	}
 
+	// Save stats to XP file
 	fs.writeFile('./xp.json', JSON.stringify(xp), (err) => {
 		if (err) console.log(err);
 	});
 
+	// Commands
+	// If the message doesn't start with a prefix, return
 	if (!message.content.startsWith(prefix)) return;
 
+	// Args handler
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
 	const commandName = args.shift().toLowerCase();
 
@@ -103,4 +116,5 @@ client.on('message', message => {
 	}
 });
 
+// Finally, log into the bot
 client.login(token);
