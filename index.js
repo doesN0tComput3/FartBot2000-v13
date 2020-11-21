@@ -51,6 +51,17 @@ client.on('guildMemberRemove', (member) => {
 	channel.send(goodbyeEmbed);
 });
 
+// Snipe command
+client.snipes = new Map();
+client.on('messageDelete', message => {
+	client.snipes.set(message.channel.id, {
+		content: message.content,
+		author: message.author.tag,
+		authorAvatar: message.author.avatarURL(),
+		image: message.attachments.first() ? message.attachments.first().proxyURL : null
+	});
+});
+
 // Where it all happens 😏
 client.on('message', message => {
 	// Return if the message is from a bot
@@ -95,6 +106,22 @@ client.on('message', message => {
 	// Commands
 	// If the message doesn't start with a prefix, return
 	if (!message.content.startsWith(prefix)) return;
+
+	if (message.content === '!snipe') {
+		const msg = client.snipes.get(message.channel.id);
+		if (!msg) return message.reply('there wasn\'t any messages to snipe sorry broski');
+
+		const embed = new Discord.MessageEmbed()
+			.setColor('RANDOM')
+			.setAuthor(msg.author, msg.authorAvatar)
+			.setDescription(msg.content)
+			.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
+		if (msg.image) {
+			embed.setImage(msg.image);
+		}
+
+		message.channel.send(embed);
+	}
 
 	// Args handler
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
