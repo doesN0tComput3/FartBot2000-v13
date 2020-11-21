@@ -107,7 +107,9 @@ client.on('message', message => {
 	// If the message doesn't start with a prefix, return
 	if (!message.content.startsWith(prefix)) return;
 
+	// Snipe command
 	if (message.content === '!snipe') {
+		// Get last deleted message
 		const msg = client.snipes.get(message.channel.id);
 		if (!msg) return message.reply('there wasn\'t any messages to snipe sorry broski');
 
