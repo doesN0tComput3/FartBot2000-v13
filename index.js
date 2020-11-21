@@ -4,8 +4,8 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const { prefix, token } = require('./config.json');
 const xp = require('./xp.json');
-const channel = client.channels.cache.find(channel => channel.id === '749084221024239717');
 const client = new Discord.Client();
+const channel = client.channels.cache.find(channel => channel.id === '749084221024239717');
 
 // Find our commands
 client.commands = new Discord.Collection();
@@ -67,7 +67,7 @@ client.on('message', message => {
 	}
 
 	const currentXp = xp[message.author.id].xp;
-	const getNeededXP = (level) => level * 200;
+	const getNeededXP = (level) => level * 100;
 	const currentLevel = xp[message.author.id].level;
 	xp[message.author.id].xp = currentXp + xpAdd;
 	const needed = getNeededXP(currentLevel);
