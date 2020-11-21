@@ -31,8 +31,7 @@ module.exports = {
         const senderEmbed = new Discord.MessageEmbed()
             .setColor('#39ff14')
             .setTitle('Message sent!')
-            .setDescription(`Your message to ${receiver} has been sent.`)
-            .addField('**Message**', `${text}`, true)
+            .setDescription(`Your message to ${receiver} has been sent.\n\n**Message:**\n${text}`)
             .setThumbnail(`${receiver.avatarURL()}`)
             .setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 
