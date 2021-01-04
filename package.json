@@ -9,8 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@discordjs/opus": "^0.3.3",
-    "discord.js": "^12.4.1",
-    "sodium": "^3.0.2"
+    "discord.js": "^12.4.1"
   }
 }
