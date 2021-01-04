@@ -18,7 +18,7 @@ module.exports = {
                     // Self deafen so we don't recieve audio
                     connection.voice.setDeaf(true);
                     // Get our fart video
-                    const stream = ytdl(fart, { filter: 'audioonly' });
+                    const stream = ytdl(config.farts[fart], { filter: 'audioonly' });
                     // Play fart
                     const dispatcher = connection.play(stream);
                     // Leave once it's over
