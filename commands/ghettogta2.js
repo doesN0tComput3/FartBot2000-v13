@@ -1,5 +1,4 @@
 const fs = require('fs');
-const audio = fs.createReadStream('./audio/ghettogta2.mp3');
 
 module.exports = {
     name: 'ghettogta2',
@@ -16,7 +15,7 @@ module.exports = {
                     // Self deafen so we don't recieve audio
                     connection.voice.setDeaf(true);
                     // Play
-                    const dispatcher = connection.play(audio);
+                    const dispatcher = connection.play(fs.createReadStream('./audio/ghettogta2.mp3'));
                     // Leave once it's over
                     dispatcher.on('finish', () => {
                         vc.leave();
