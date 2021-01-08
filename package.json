@@ -11,6 +11,6 @@
   "dependencies": {
     "@discordjs/opus": "^0.3.3",
     "discord.js": "^12.4.1",
-    "ytdl-core": "^4.4.0"
+    "ytdl-core": "^4.4.1"
   }
 }
