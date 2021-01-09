@@ -2,7 +2,7 @@
 // Define variables
 const fs = require('fs');
 const Discord = require('discord.js');
-const { prefix, token } = require('./config.json');
+const config = require('./config.json');
 const xp = require('./xp.json');
 const client = new Discord.Client();
 const channel = client.channels.cache.find(channel => channel.id === '749084221024239717');
@@ -15,7 +15,6 @@ for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 	client.commands.set(command.name, command);
 }
-
 // When the bot is on, log it in the console and set status
 client.once('ready', () => {
 	console.log('hey i returned');
@@ -23,16 +22,42 @@ client.once('ready', () => {
 	if (developing === true) {
 		client.user.setPresence({ activity: { name: 'orion fix me | !help', type: 'WATCHING' }, status: 'idle' })
 	} else {
-		client.user.setPresence({
-			activity: {
-				name: 'you fart 😋 | !help',
-				type: 'LISTENING'
+		setInterval(function () {
+			let statusType = Math.floor(Math.random() * (3 - 1 + 1) + 1)
+
+			// Playing statuses
+			if (statusType === 1) {
+				let status = Math.floor(Math.random() * config.playingStatus.length);
+				client.user.setPresence({
+					activity: {
+						name: `${config.playingStatus[status]} | !help`,
+						type: 'PLAYING'
+					}
+				})
+			// Streaming statuses
+			} else if (statusType === 2) {
+				let status = Math.floor(Math.random() * config.streamingStatus.length);
+				client.user.setPresence({
+					activity: {
+						name: `${config.streamingStatus[status]} | !help`,
+						type: 'STREAMING',
+						url: config.streamingStatusURLs
+					}
+				})
+			// Listening statuses
+			} else if (statusType === 3) {
+				let status = Math.floor(Math.random() * config.listeningStatus.length);
+				client.user.setPresence({
+					activity: {
+						name: `${config.listeningStatus[status]} | !help`,
+						type: 'LISTENING'
+					}
+				})
 			}
-		});
+		}, 10000)
 	}
-
-
-});
+}
+);
 
 // Welcome message
 client.on('guildMemberAdd', (member) => {
@@ -116,7 +141,7 @@ client.on('message', message => {
 
 	// Commands
 	// If the message doesn't start with a prefix, return
-	if (!message.content.startsWith(prefix)) return;
+	if (!message.content.startsWith(config.prefix)) return;
 
 	// Snipe command
 	if (message.content === '!snipe') {
@@ -137,7 +162,7 @@ client.on('message', message => {
 	}
 
 	// Args handler
-	const args = message.content.slice(prefix.length).trim().split(/ +/);
+	const args = message.content.slice(config.prefix.length).trim().split(/ +/);
 	const commandName = args.shift().toLowerCase();
 
 	if (!client.commands.has(commandName)) return;
@@ -157,4 +182,4 @@ client.on('message', message => {
 });
 
 // Finally, log into the bot
-client.login(token);
+client.login(config.token);
