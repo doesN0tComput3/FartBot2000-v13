@@ -16,7 +16,7 @@ module.exports = {
 
 		const currentXp = xp[message.author.id].xp;
 		const currentLevel = xp[message.author.id].level;
-		const nextLevelUp = currentLevel * 150;
+		const nextLevelUp = currentLevel * 100;
 		const difference = nextLevelUp - currentXp;
 
 		const embed = new Discord.MessageEmbed()
