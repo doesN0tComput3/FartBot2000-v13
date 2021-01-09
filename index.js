@@ -23,10 +23,11 @@ client.once('ready', () => {
 		client.user.setPresence({ activity: { name: 'Orion fix me | !help', type: 'WATCHING' }, status: 'idle' });
 	} else {
 		setInterval(function () {
-			let statusType = Math.floor(Math.random() * (3 - 1 + 1) + 1);
+			let statusType = Math.floor(Math.random() * (6 - 1 + 1) + 1);
+			console.log(statusType);
 
 			// Playing statuses
-			if (statusType === 1) {
+			if (statusType >= 1 && statusType <= 2) {
 				let status = Math.floor(Math.random() * config.playingStatus.length);
 				client.user.setPresence({
 					activity: {
@@ -35,7 +36,7 @@ client.once('ready', () => {
 					}
 				});
 				// Streaming statuses
-			} else if (statusType === 2) {
+			} else if (statusType >= 3 && statusType <= 4) {
 				let status = Math.floor(Math.random() * config.streamingStatus.length);
 				client.user.setPresence({
 					activity: {
@@ -45,7 +46,7 @@ client.once('ready', () => {
 					}
 				});
 				// Listening statuses
-			} else if (statusType === 3) {
+			} else if (statusType >= 5 && statusType <= 6) {
 				let status = Math.floor(Math.random() * config.listeningStatus.length);
 				client.user.setPresence({
 					activity: {
