@@ -20,7 +20,7 @@ client.once('ready', () => {
 	console.log('hey i returned');
 
 	if (developing === true) {
-		client.user.setPresence({ activity: { name: 'orion fix me | !help', type: 'WATCHING' }, status: 'idle' });
+		client.user.setPresence({ activity: { name: 'Orion fix me | !help', type: 'WATCHING' }, status: 'idle' });
 	} else {
 		setInterval(function () {
 			let statusType = Math.floor(Math.random() * (3 - 1 + 1) + 1);
