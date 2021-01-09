@@ -20,10 +20,10 @@ client.once('ready', () => {
 	console.log('hey i returned');
 
 	if (developing === true) {
-		client.user.setPresence({ activity: { name: 'orion fix me | !help', type: 'WATCHING' }, status: 'idle' })
+		client.user.setPresence({ activity: { name: 'orion fix me | !help', type: 'WATCHING' }, status: 'idle' });
 	} else {
 		setInterval(function () {
-			let statusType = Math.floor(Math.random() * (3 - 1 + 1) + 1)
+			let statusType = Math.floor(Math.random() * (3 - 1 + 1) + 1);
 
 			// Playing statuses
 			if (statusType === 1) {
@@ -33,8 +33,8 @@ client.once('ready', () => {
 						name: `${config.playingStatus[status]} | !help`,
 						type: 'PLAYING'
 					}
-				})
-			// Streaming statuses
+				});
+				// Streaming statuses
 			} else if (statusType === 2) {
 				let status = Math.floor(Math.random() * config.streamingStatus.length);
 				client.user.setPresence({
@@ -43,8 +43,8 @@ client.once('ready', () => {
 						type: 'STREAMING',
 						url: config.streamingStatusURLs
 					}
-				})
-			// Listening statuses
+				});
+				// Listening statuses
 			} else if (statusType === 3) {
 				let status = Math.floor(Math.random() * config.listeningStatus.length);
 				client.user.setPresence({
@@ -52,9 +52,9 @@ client.once('ready', () => {
 						name: `${config.listeningStatus[status]} | !help`,
 						type: 'LISTENING'
 					}
-				})
+				});
 			}
-		}, 10000)
+		}, 10000);
 	}
 }
 );
@@ -118,7 +118,7 @@ client.on('message', message => {
 	// Level up message
 	if (xp[message.author.id].xp >= needed) {
 		if (developing === true) {
-
+			// Do nothing
 		} else {
 			xp[message.author.id].level = currentLevel + 1;
 			const levelUpEmbed = new Discord.MessageEmbed()
