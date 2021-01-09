@@ -6,6 +6,7 @@ const { prefix, token } = require('./config.json');
 const xp = require('./xp.json');
 const client = new Discord.Client();
 const channel = client.channels.cache.find(channel => channel.id === '749084221024239717');
+const developing = true;
 
 // Find our commands
 client.commands = new Discord.Collection();
@@ -19,12 +20,18 @@ for (const file of commandFiles) {
 client.once('ready', () => {
 	console.log('hey i returned');
 
-	client.user.setPresence({
-		activity: {
-			name: 'you fart 😋 | !help',
-			type: 'LISTENING'
-		}
-	});
+	if (developing === true) {
+		client.user.setPresence({ activity: { name: 'orion fix me | !help', type: 'WATCHING' }, status: 'idle' })
+	} else {
+		client.user.setPresence({
+			activity: {
+				name: 'you fart 😋 | !help',
+				type: 'LISTENING'
+			}
+		});
+	}
+
+
 });
 
 // Welcome message
@@ -85,17 +92,21 @@ client.on('message', message => {
 
 	// Level up message
 	if (xp[message.author.id].xp >= needed) {
-		xp[message.author.id].level = currentLevel + 1;
-		const levelUpEmbed = new Discord.MessageEmbed()
-			.setColor('#39ff14')
-			.setTitle('**LEVEL UP!**')
-			.setDescription(`${message.author} just leveled up to **level ${currentLevel + 1}!**\nThey now need **${getNeededXP(currentLevel + 1)} XP** to level up.`)
-			.addField('XP', xp[message.author.id].xp)
-			.setThumbnail(`${message.author.avatarURL()}`)
-			.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
+		if (developing === true) {
 
-		const xpChannel = message.client.channels.cache.find(channel => channel.id === '777761493285732362');
-		xpChannel.send(levelUpEmbed);
+		} else {
+			xp[message.author.id].level = currentLevel + 1;
+			const levelUpEmbed = new Discord.MessageEmbed()
+				.setColor('#39ff14')
+				.setTitle('**LEVEL UP!**')
+				.setDescription(`${message.author} just leveled up to **level ${currentLevel + 1}!**\nThey now need **${getNeededXP(currentLevel + 1)} XP** to level up.`)
+				.addField('XP', xp[message.author.id].xp)
+				.setThumbnail(`${message.author.avatarURL()}`)
+				.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
+
+			const xpChannel = message.client.channels.cache.find(channel => channel.id === '777761493285732362');
+			xpChannel.send(levelUpEmbed);
+		}
 	}
 
 	// Save stats to XP file
