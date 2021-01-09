@@ -6,7 +6,7 @@ const { prefix, token } = require('./config.json');
 const xp = require('./xp.json');
 const client = new Discord.Client();
 const channel = client.channels.cache.find(channel => channel.id === '749084221024239717');
-const developing = true;
+const developing = false;
 
 // Find our commands
 client.commands = new Discord.Collection();
