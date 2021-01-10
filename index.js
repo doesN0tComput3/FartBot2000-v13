@@ -55,6 +55,13 @@ client.once('ready', () => {
 				});
 			}
 		}, 10000);
+
+		client.user.setPresence({
+			activity: {
+				name: 'HAPPY BIRTHDAY MY LOVE | !help',
+				type: 'PLAYING'
+			}
+		});
 	}
 }
 );
