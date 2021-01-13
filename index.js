@@ -1,6 +1,6 @@
 // FartBot2000
 // Define variables
-// Testing once more
+// omg
 const fs = require('fs');
 const Discord = require('discord.js');
 const config = require('./config.json');
