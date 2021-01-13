@@ -1,6 +1,6 @@
 {
   "name": "fartbot2000",
-  "version": "8.6.7",
+  "version": "8.7",
   "description": "Discord.js bot for quan hitters",
   "main": "index.js",
   "scripts": {
