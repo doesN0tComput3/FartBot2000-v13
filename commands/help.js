@@ -19,11 +19,11 @@ module.exports = {
 			return message.author.send(data, { split: true })
 				.then(() => {
 					if (message.channel.type === 'dm') return;
-					message.channel.send(`${message.author} I've sent you a DM with all my commands!`);
+					message.channel.send(`✅ ${message.author} i've sent you a DM with all my commands!`);
 				})
 				.catch(error => {
 					console.error(`Could not send help DM to ${message.author.tag}.\n`, error);
-					message.channel.send(`${message.author} it seems like I can't DM you! Do you have DMs disabled?`);
+					message.channel.send(`❌ ${message.author} it seems like I can't DM you! Do you have DMs disabled?`);
 				});
 		}
 		const name = args[0].toLowerCase();
@@ -33,7 +33,7 @@ module.exports = {
 			return message.channel.send('**Category:** fun\n**Description:** Sends the last deleted message in the channel');
 		}
 		if (!command) {
-			return message.channel.send(`${message.author} that's not a valid command!`);
+			return message.channel.send(`❌ ${message.author} that's not a valid command!`);
 		}
 
 		data.push(`**Name:** ${command.name}`);

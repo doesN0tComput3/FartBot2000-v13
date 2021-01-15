@@ -24,7 +24,7 @@ module.exports = {
 				.catch();
 		} else {
 			// They aren't in vc so I'm not wasting my time
-			return message.channel.send(`${message.author} you're not in vc i can't`);
+			return message.channel.send(`❌ ${message.author} you're not in vc i can't`);
 		}
 
 
