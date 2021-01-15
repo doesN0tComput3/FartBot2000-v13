@@ -8,8 +8,6 @@ module.exports = {
 	usage: '[question]',
 	args: true,
 	execute(message, args) {
-		if (!args) return message.reply('ask a question you dumbass');
-
 		const result = Math.floor((Math.random() * config.responses.length));
 
 		const question = args.join(' ');
