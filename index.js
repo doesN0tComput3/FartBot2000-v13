@@ -25,7 +25,6 @@ client.once('ready', () => {
 	} else {
 		setInterval(function () {
 			let statusType = Math.floor(Math.random() * (6 - 1 + 1) + 1);
-			console.log(statusType);
 
 			// Playing statuses
 			if (statusType >= 1 && statusType <= 2) {
