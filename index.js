@@ -1,10 +1,10 @@
 // FartBot2000
 // Define variables
-// omg
 const fs = require('fs');
 const Discord = require('discord.js');
 const config = require('./config.json');
 const xp = require('./xp.json');
+const statuses = require('./statuses.json');
 const client = new Discord.Client();
 const channel = client.channels.cache.find(channel => channel.id === '749084221024239717');
 const developing = false;
@@ -25,33 +25,33 @@ client.once('ready', () => {
 	} else {
 		setInterval(function () {
 			let statusType = Math.floor(Math.random() * (6 - 1 + 1) + 1);
+			console.log(statusType);
 
 			// Playing statuses
 			if (statusType >= 1 && statusType <= 2) {
-				let status = Math.floor(Math.random() * config.playingStatus.length);
+				let status = Math.floor(Math.random() * statuses.playingStatus.length);
 				client.user.setPresence({
 					activity: {
-						name: `${config.playingStatus[status]} | !help`,
+						name: `${statuses.playingStatus[status]} | !help`,
 						type: 'PLAYING'
 					}
 				});
-				// Streaming statuses
+				// Listening statuses
 			} else if (statusType >= 3 && statusType <= 4) {
-				let status = Math.floor(Math.random() * config.streamingStatus.length);
+				let status = Math.floor(Math.random() * statuses.listeningStatus.length);
 				client.user.setPresence({
 					activity: {
-						name: `${config.streamingStatus[status]} | !help`,
-						type: 'STREAMING',
-						url: config.streamingStatusURLs
+						name: `${statuses.listeningStatus[status]} | !help`,
+						type: 'LISTENING'
 					}
 				});
-				// Listening statuses
+				// Watching statuses
 			} else if (statusType >= 5 && statusType <= 6) {
-				let status = Math.floor(Math.random() * config.listeningStatus.length);
+				let status = Math.floor(Math.random() * statuses.watchingStatus.length);
 				client.user.setPresence({
 					activity: {
-						name: `${config.listeningStatus[status]} | !help`,
-						type: 'LISTENING'
+						name: `${statuses.watchingStatus[status]} | !help`,
+						type: 'WATCHING'
 					}
 				});
 			}
