@@ -1,6 +1,7 @@
 {
     "token": "NzczNzUwNzc1MzMxMTYwMDY0.X6NxkA.eyBSJafb7C2lZX6wxg9qRHBemqs",
-    "prefix": "!",
+	"prefix": "!",
+	"developing": true,
     "responses": ["It is certain.",
         "It is decidedly so.",
         "Without a doubt.",

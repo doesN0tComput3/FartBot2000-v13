@@ -1,5 +1,6 @@
 const fs = require('fs');
 const statuses = require('../statuses.json');
+const config = require('../config.json');
 
 module.exports = {
 	name: 'status',
@@ -7,6 +8,7 @@ module.exports = {
 	category: 'fun',
 	args: true,
 	execute(message, args) {
+		if (config.developing === true) return message.channel.send('Orion is fixing me rn so I can\'t add any new statuses, sorry!');
 		// Define status type and status to insert
 		const statusType = args[0];
 		const status = args.slice(1).join(' ');

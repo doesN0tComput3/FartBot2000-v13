@@ -8,9 +8,9 @@ module.exports = {
 	async execute(message, args) {
 		// Returns
 		// Return if author isn't a mod/server owner
-		if (!message.member.id === '697506619545747569' || !message.member.roles.cache.some(r => r.id === '773966213171642379')) {
-			return message.reply('you not kitten/broey so no');
-		}
+		if (!message.member.id === '697506619545747569') return message.reply('you not kitten/broey so no');
+
+		if (!message.member.roles.cache.some(r => r.id === '773966213171642379')) return message.reply('you not kitten/broey so no');
 		// Return if no number
 		if (!args[0]) return message.reply('HOW MUCH BITCH');
 
