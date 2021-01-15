@@ -147,7 +147,7 @@ client.on('message', message => {
 	if (message.content === '!snipe') {
 		// Get last deleted message
 		const msg = client.snipes.get(message.channel.id);
-		if (!msg) return message.reply('there wasn\'t any messages to snipe sorry broski');
+		if (!msg) return message.channel.send('there wasn\'t any messages to snipe sorry broski');
 
 		const embed = new Discord.MessageEmbed()
 			.setColor('RANDOM')
@@ -177,7 +177,7 @@ client.on('message', message => {
 		command.execute(message, args);
 	} catch (error) {
 		console.error(error);
-		message.reply('there was an error trying to execute that command!');
+		message.channel.send('❌ there was an error trying to do that :(');
 	}
 });
 

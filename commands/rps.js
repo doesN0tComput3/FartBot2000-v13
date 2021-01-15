@@ -76,7 +76,7 @@ module.exports = {
 
 			message.channel.send(embed);
 		} else {
-			return message.reply('PICK A CHOICE YOU DUMBASS (rock, paper, scissors)');
+			return message.channel.send('PICK A CHOICE YOU DUMBASS (rock, paper, scissors)');
 		}
 	}
 };
