@@ -7,7 +7,7 @@ const xp = require('./xp.json');
 const statuses = require('./statuses.json');
 const client = new Discord.Client();
 const channel = client.channels.cache.find(channel => channel.id === '749084221024239717');
-const developing = false;
+const developing = true;
 
 // Find our commands
 client.commands = new Discord.Collection();
@@ -60,7 +60,7 @@ client.once('ready', () => {
 );
 
 // Welcome message
-client.on('guildMemberAdd', (member) => {
+client.on('guildMemberAdd', member => {
 	const welcomeEmbed = new Discord.MessageEmbed()
 		.setColor('RANDOM')
 		.setTitle(`Welcome, ${member.username}!`)
@@ -72,7 +72,7 @@ client.on('guildMemberAdd', (member) => {
 });
 
 // Goodbye message
-client.on('guildMemberRemove', (member) => {
+client.on('guildMemberRemove', member => {
 	const goodbyeEmbed = new Discord.MessageEmbed()
 		.setColor('RANDOM')
 		.setTitle(`Bye ${member.username}...`)
@@ -83,15 +83,38 @@ client.on('guildMemberRemove', (member) => {
 	channel.send(goodbyeEmbed);
 });
 
-// Snipe command
+// Deleted message
 client.snipes = new Map();
 client.on('messageDelete', message => {
+	// Save message info
 	client.snipes.set(message.channel.id, {
 		content: message.content,
 		author: message.author.tag,
 		authorAvatar: message.author.avatarURL(),
+		timestamp: message.createdAt,
 		image: message.attachments.first() ? message.attachments.first().proxyURL : null
 	});
+	// Logs into channel
+	const embed = new Discord.MessageEmbed()
+		.setTitle('Message Deleted')
+		.setColor('RED')
+		.setThumbnail(message.author.avatarURL())
+		.addField('Author', message.author, true)
+		.setFooter('FartBot2000 | !help', message.client.user.avatarURL())
+		.setTimestamp(message.createdAt);
+
+	if (message.content) {
+		embed.setDescription(`A message was deleted in ${message.channel}!`);
+		embed.addField('Message', message.content, true);
+	}
+	// Adds image in if one exists
+	const image = client.snipes.get(message.channel.id).image;
+	if (image) {
+		embed.setDescription(`A message was deleted in ${message.channel}!`);
+		embed.setImage(image);
+	}
+	const channel = message.client.channels.cache.find(channel => channel.id === '800815475822821436');
+	channel.send(embed);
 });
 
 // Where it all happens 😏
@@ -142,24 +165,6 @@ client.on('message', message => {
 	// Commands
 	// If the message doesn't start with a prefix, return
 	if (!message.content.startsWith(config.prefix)) return;
-
-	// Snipe command
-	if (message.content === '!snipe') {
-		// Get last deleted message
-		const msg = client.snipes.get(message.channel.id);
-		if (!msg) return message.channel.send('❌ there wasn\'t any messages to snipe sorry broski');
-
-		const embed = new Discord.MessageEmbed()
-			.setColor('RANDOM')
-			.setAuthor(msg.author, msg.authorAvatar)
-			.setDescription(msg.content)
-			.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
-		if (msg.image) {
-			embed.setImage(msg.image);
-		}
-
-		message.channel.send(embed);
-	}
 
 	// Args handler
 	// Get args and command
