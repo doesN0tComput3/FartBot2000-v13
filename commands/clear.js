@@ -3,7 +3,8 @@ module.exports = {
 	aliases: ['delete'],
 	description: 'Deletes messages',
 	category: 'mod',
-	usage: '[number]',
+	usage: '[number < 100]',
+	guildOnly: true,
 	args: true,
 	async execute(message, args) {
 		// Returns

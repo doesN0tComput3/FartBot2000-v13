@@ -7,6 +7,7 @@ module.exports = {
 	description: 'Leaves the vc',
 	aliases: ['die', 'leave'],
 	category: 'voice',
+	guildOnly: true,
 	execute(message) {
 		const vc = message.member.voice.channel;
 

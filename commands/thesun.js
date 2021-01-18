@@ -6,6 +6,7 @@ module.exports = {
 	name: 'thesun',
 	description: 'The sun goes down the stars come out and all that count is here and now my universe will never be the same I\'m glad you came',
 	category: 'voice',
+	guildOnly: true,
 	execute(message) {
 		// Define vc
 		const vc = message.member.voice.channel;

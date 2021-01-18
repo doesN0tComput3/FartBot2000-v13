@@ -5,6 +5,7 @@ module.exports = {
 	name: 'fart',
 	description: 'fart (must be in vc)',
 	category: 'voice',
+	guildOnly: true,
 	execute(message) {
 		// Define vc and fart video(s)
 		const vc = message.member.voice.channel;

@@ -169,8 +169,18 @@ client.on('message', message => {
 
 	if (!command) return;
 
+	if (command.guildOnly && message.channel.type === 'dm') {
+		return message.reply('❌ I can\'t do that command inside DMs!');
+	}
+
 	if (command.args && !args.length) {
-		return message.channel.send(`❌ You didn't provide all the required info, ${message.author}`);
+		let reply = `❌ You didn't provide all the required info, ${message.author}`;
+
+		if (command.usage) {
+			reply += `\nThe proper usage would be: \`${config.prefix}${command.name} ${command.usage}\``;
+		}
+
+		return message.channel.send(reply);
 	}
 
 	try {

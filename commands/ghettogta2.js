@@ -4,6 +4,7 @@ module.exports = {
 	name: 'ghettogta2',
 	description: 'Ghetto gta 2!',
 	category: 'voice',
+	guildOnly: true,
 	execute(message) {
 		// Define vc
 		const vc = message.member.voice.channel;

@@ -6,6 +6,7 @@ module.exports = {
 	name: 'number12',
 	description: 'cok',
 	category: 'voice',
+	guildOnly: true,
 	execute(message) {
 		// Define vc
 		const vc = message.member.voice.channel;
