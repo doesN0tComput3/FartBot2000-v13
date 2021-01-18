@@ -162,17 +162,21 @@ client.on('message', message => {
 	}
 
 	// Args handler
+	// Get args and command
 	const args = message.content.slice(config.prefix.length).trim().split(/ +/);
 	const commandName = args.shift().toLowerCase();
 
 	const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 
+	// Return if no command
 	if (!command) return;
 
+	// Return if message is in dm
 	if (command.guildOnly && message.channel.type === 'dm') {
 		return message.reply('❌ I can\'t do that command inside DMs!');
 	}
 
+	// Return if command doesn't have all the required args
 	if (command.args && !args.length) {
 		let reply = `❌ You didn't provide all the required info, ${message.author}`;
 
@@ -183,6 +187,7 @@ client.on('message', message => {
 		return message.channel.send(reply);
 	}
 
+	// Try to execute the command, catches if theres an error
 	try {
 		command.execute(message, args);
 	} catch (error) {
