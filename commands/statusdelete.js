@@ -6,11 +6,12 @@ module.exports = {
 	name: 'statusdelete',
 	description: 'Deletes a status from the bot',
 	category: 'mod',
+	guildOnly: true,
 	args: true,
 	execute(message, args) {
 		// Return if author isn't a mod/server owner
-		// if (!message.member.id === '697506619545747569') return message.channel.send(`❌ ${message.author} you not kitten/broey so no`);
-		// if (!message.member.roles.cache.some(r => r.id === '773966213171642379')) return message.channel.send(`❌ ${message.author} you not kitten/broey so no`);
+		if (!message.member.id === '697506619545747569') return message.channel.send(`❌ ${message.author} you not kitten/broey so no`);
+		if (!message.member.roles.cache.some(r => r.id === '773966213171642379')) return message.channel.send(`❌ ${message.author} you not kitten/broey so no`);
 
 		// Get status and statusType
 		const statusType = args[0];
