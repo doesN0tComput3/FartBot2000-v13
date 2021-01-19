@@ -117,6 +117,31 @@ client.on('messageDelete', message => {
 	channel.send(embed);
 });
 
+// Edited message logger
+client.on('messageUpdate', (oldMessage, newMessage) => {
+	if (!oldMessage.guild) return;
+	if (!oldMessage.content) return;
+	const embed = new Discord.MessageEmbed()
+		.setTitle('Message Edited')
+		.setColor('YELLOW')
+		.setDescription(`${oldMessage.author} edited their message in ${oldMessage.channel}.`)
+		.setThumbnail(oldMessage.author.avatarURL())
+		.addField('Old Message', oldMessage.content, true)
+		.addField('New Message', newMessage.content, true)
+		.setTimestamp(newMessage.createdAt)
+		.setFooter('FartBot2000 | !help', oldMessage.client.user.avatarURL());
+
+	const image = newMessage.attachments.first() ? newMessage.attachments.first().proxyURL : null;
+
+	if (image) {
+		embed.setImage(image);
+	}
+
+	const channel = oldMessage.client.channels.cache.find(channel => channel.id === '800865975015833660');
+
+	channel.send(embed);
+});
+
 // Where it all happens 😏
 client.on('message', message => {
 	// Return if the message is from a bot
