@@ -5,12 +5,13 @@ module.exports = {
 	category: 'mod',
 	usage: '[number < 100]',
 	guildOnly: true,
+	permissions: 'MANAGE_MESSAGES',
 	args: true,
 	async execute(message, args) {
 		// Returns
 		// Return if author isn't a mod/server owner
-		if (!message.member.id === '697506619545747569') return message.channel.send(`❌ ${message.author} you not kitten/broey so no`);
-		if (!message.member.roles.cache.some(r => r.id === '773966213171642379')) return message.channel.send(`❌ ${message.author} you not kitten/broey so no`);
+		// if (!message.member.id === '697506619545747569') return message.channel.send(`❌ ${message.author} you not kitten/broey so no`);
+		// if (!message.member.roles.cache.some(r => r.id === '773966213171642379')) return message.channel.send(`❌ ${message.author} you not kitten/broey so no`);
 
 		// Return if amount isn't a number
 		if (isNaN(args[0])) return message.channel.send('❌ thats not a number idiot');

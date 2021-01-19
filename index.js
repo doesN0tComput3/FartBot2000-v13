@@ -206,6 +206,13 @@ client.on('message', message => {
 		return message.reply('❌ I can\'t do that command inside DMs!');
 	}
 
+	if (command.permissions) {
+		const authorPerms = message.channel.permissionsFor(message.author);
+		if (!authorPerms || !authorPerms.has(command.permissions)) {
+			return message.channel.send(`❌ You don't have the required permissions, ${message.author}!\nTry again when you're a kitten 🙄`);
+		}
+	}
+
 	// Return if command doesn't have all the required args
 	if (command.args && !args.length) {
 		let reply = `❌ You didn't provide all the required info, ${message.author}`;

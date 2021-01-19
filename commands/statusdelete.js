@@ -7,6 +7,7 @@ module.exports = {
 	description: 'Deletes a status from the bot',
 	category: 'mod',
 	guildOnly: true,
+	permissions: 'ADMINISTRATOR',
 	args: true,
 	execute(message, args) {
 		// Return if author isn't a mod/server owner
