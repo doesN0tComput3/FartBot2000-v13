@@ -86,6 +86,7 @@ client.on('guildMemberRemove', member => {
 // Deleted message
 client.snipes = new Map();
 client.on('messageDelete', message => {
+	if (message.author.bot) return;
 	// Save message info
 	client.snipes.set(message.channel.id, {
 		content: message.content,
@@ -119,6 +120,8 @@ client.on('messageDelete', message => {
 
 // Edited message logger
 client.on('messageUpdate', (oldMessage, newMessage) => {
+	if (oldMessage.author.bot) return;
+	if (oldMessage.content.includes('tenor.com') || newMessage.content.includes('tenor.com')) return;
 	if (!oldMessage.guild) return;
 	if (!oldMessage.content) return;
 	const embed = new Discord.MessageEmbed()
