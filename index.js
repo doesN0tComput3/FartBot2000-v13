@@ -121,13 +121,15 @@ client.on('messageDelete', message => {
 // Edited message logger
 client.on('messageUpdate', (oldMessage, newMessage) => {
 	if (oldMessage.author.bot) return;
-	if (oldMessage.content.includes('tenor.com') || newMessage.content.includes('tenor.com')) return;
+	if (oldMessage.content.includes('https://') || oldMessage.content.includes('http://') || oldMessage.content.includes('www.')) return;
+	if (newMessage.content.includes('https://') || newMessage.content.includes('http://') || newMessage.content.includes('www.')) return;
 	if (!oldMessage.guild) return;
 	if (!oldMessage.content) return;
+
 	const embed = new Discord.MessageEmbed()
 		.setTitle('Message Edited')
 		.setColor('YELLOW')
-		.setDescription(`${oldMessage.author} edited their message in ${oldMessage.channel}.`)
+		.setDescription(`${oldMessage.author} edited their message in ${oldMessage.channel}.\n\n[Link to Message](https://discord.com/channels/${newMessage.guild.id}/${newMessage.channel.id}/${newMessage.id})`)
 		.setThumbnail(oldMessage.author.avatarURL())
 		.addField('Old Message', oldMessage.content, true)
 		.addField('New Message', newMessage.content, true)
