@@ -7,7 +7,7 @@ const xp = require('./xp.json');
 const statuses = require('./statuses.json');
 const client = new Discord.Client();
 const channel = client.channels.cache.find(channel => channel.id === '749084221024239717');
-const developing = false;
+const developing = true;
 
 // Find our commands
 client.commands = new Discord.Collection();
@@ -87,6 +87,7 @@ client.on('guildMemberRemove', member => {
 client.snipes = new Map();
 client.on('messageDelete', message => {
 	if (message.author.bot) return;
+	if (message.content.startsWith(config.prefix)) return;
 	// Save message info
 	client.snipes.set(message.channel.id, {
 		content: message.content,
@@ -229,9 +230,36 @@ client.on('message', message => {
 		return message.channel.send(reply);
 	}
 
-	// Try to execute the command, catches if theres an error
+	// Try to execute the command, logs it, catches if theres an error
 	try {
 		command.execute(message, args);
+
+		const embed = new Discord.MessageEmbed()
+			.setTitle(`${command.name} log`)
+			.setColor('GREEN')
+			.setDescription(`The ${command.name} command was used in ${message.channel}`)
+			.setThumbnail(message.author.avatarURL())
+			.setTimestamp(message.createdAt)
+			.addField('Command', command.name, true)
+			.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
+
+		if (args.length) {
+			embed.addField('Args', args, true);
+		}
+		const channel = client.channels.cache.find(channel => channel.name === command.name);
+		if (!channel) {
+			const logServer = client.guilds.cache.find(guild => guild.id === '615328890285457409');
+
+			logServer.channels.create(command.name, {
+				type: 'text',
+				topic: `Logs for ${command.name} command`
+			});
+
+			const logChannel = client.channels.cache.find(channel => channel.name === command.name);
+			logChannel.send(embed);
+		} else {
+			channel.send(embed);
+		}
 	} catch (error) {
 		console.error(error);
 		message.channel.send(`❌ ${message.author} there was an error trying to do that :(`);
