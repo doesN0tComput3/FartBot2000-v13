@@ -234,32 +234,32 @@ client.on('message', message => {
 	try {
 		command.execute(message, args);
 
-		const embed = new Discord.MessageEmbed()
-			.setTitle(`${command.name} log`)
-			.setColor('GREEN')
-			.setDescription(`The ${command.name} command was used in ${message.channel}`)
-			.setThumbnail(message.author.avatarURL())
-			.setTimestamp(message.createdAt)
-			.addField('Command', command.name, true)
-			.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
+		// const embed = new Discord.MessageEmbed()
+			// .setTitle(`${command.name} log`)
+			// .setColor('GREEN')
+			// .setDescription(`The ${command.name} command was used in ${message.channel}`)
+			// .setThumbnail(message.author.avatarURL())
+			// .setTimestamp(message.createdAt)
+			// .addField('Command', command.name, true)
+			// .setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 
-		if (args.length) {
-			embed.addField('Args', args, true);
-		}
-		const channel = client.channels.cache.find(channel => channel.name === command.name);
-		if (!channel) {
-			const logServer = client.guilds.cache.find(guild => guild.id === '615328890285457409');
+		// if (args.length) {
+			// embed.addField('Args', args, true);
+		// }
+		// const channel = client.channels.cache.find(channel => channel.name === command.name);
+		// if (!channel) {
+			// const logServer = client.guilds.cache.find(guild => guild.id === '615328890285457409');
 
-			logServer.channels.create(command.name, {
-				type: 'text',
-				topic: `Logs for ${command.name} command`
-			});
+			// logServer.channels.create(command.name, {
+				// type: 'text',
+				// topic: `Logs for ${command.name} command`
+			// });
 
-			const logChannel = client.channels.cache.find(channel => channel.name === command.name);
-			logChannel.send(embed);
-		} else {
-			channel.send(embed);
-		}
+			// const logChannel = client.channels.cache.find(channel => channel.name === command.name);
+			// logChannel.send(embed);
+		// } else {
+			// channel.send(embed);
+		// }
 	} catch (error) {
 		console.error(error);
 		message.channel.send(`❌ ${message.author} there was an error trying to do that :(`);
