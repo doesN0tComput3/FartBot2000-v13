@@ -12,7 +12,7 @@ module.exports = {
 		const { commands } = message.client;
 
 		if (!args.length) {
-			if (message.content === '!' || args) return;
+			if (message.content === '!') return;
 			data.push('Here\'s a list of all my commands:\n');
 			data.push(commands.map(command => command.name).join('\n'));
 			data.push(`\nYou can send \`${prefix}help [command name]\` to get info on a specific command!`);
