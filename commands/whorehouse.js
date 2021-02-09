@@ -3,7 +3,7 @@ const fs = require('fs');
 
 module.exports = {
 	name: 'whorehouse',
-	aliases: ['fuyuhiko'],
+	aliases: ['fuyuhiko', 'emergency', 'soothkamiele', 'calmkamjam'],
 	description: 'requested by kamjam',
 	category: 'voice',
 	guildOnly: true,
