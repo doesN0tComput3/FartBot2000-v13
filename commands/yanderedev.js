@@ -2,9 +2,9 @@ const Discord = require('discord.js');
 const fs = require('fs');
 
 module.exports = {
-	name: 'whorehouse',
-	aliases: ['fuyuhiko', 'emergency', 'sootheWkamiele', 'calmkamjam'],
-	description: 'requested by kamjam',
+	name: 'yanderedev',
+	aliases: ['yandere', 'ugu', 'doacutepose', 'dokidoki', 'amicute', 'oniichan'],
+	description: 'Do a cute pose',
 	category: 'voice',
 	guildOnly: true,
 	execute(message) {
@@ -18,7 +18,7 @@ module.exports = {
 					// Self deafen so we don't recieve audio
 					connection.voice.setDeaf(true);
 					// Play
-					const dispatcher = connection.play(fs.createReadStream('./audio/whorehouse.mp3'));
+					const dispatcher = connection.play(fs.createReadStream('./audio/yanderedev.mp3'));
 					// Leave once it's over
 					dispatcher.on('finish', () => {
 						vc.leave();
