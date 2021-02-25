@@ -10,24 +10,24 @@ module.exports = {
 			const sayText = args.join(' ');
 			const channel = message.client.channels.cache.find(channel => channel.id === '749084221024239717');
 
-			// If message has image AND text
-			if (message.attachments.size > 0 && sayText) {
-				let image = message.attachments.first();
+			// If message has file AND text
+			if (message.attachments.size === 1 && sayText) {
+				const file = message.attachments.first();
 
-				const imageUrl = image.url;
+				const fileUrl = file.url;
 
 				channel.send(sayText, {
-					files: [imageUrl]
+					files: [fileUrl]
 				});
 				message.channel.send('✅ ok');
-			// If message has image ONLY
-			} else if (message.attachments.size > 0) {
-				let image = message.attachments.first();
+			// If message has file ONLY
+			} else if (message.attachments.size === 1) {
+				const file = message.attachments.first();
 
-				const imageUrl = image.url;
+				const fileUrl = file.url;
 
 				channel.send({
-					files: [imageUrl]
+					files: [fileUrl]
 				});
 				message.channel.send('✅ ok');
 			// If message only has text
