@@ -220,7 +220,7 @@ client.on('message', message => {
 	}
 
 	// Return if command doesn't have all the required args
-	if (command.args && !args.length) {
+	if (command.args && !args.length && !command.name === 'say') {
 		let reply = `❌ You didn't provide all the required info, ${message.author}`;
 
 		if (command.usage) {
