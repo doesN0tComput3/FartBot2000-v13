@@ -26,7 +26,7 @@ module.exports = {
 				messageReaction.react('👎');
 			});
 		} else {
-			message.lineReply(pollEmbed).then(messageReaction => {
+			message.channel.send(pollEmbed).then(messageReaction => {
 				messageReaction.react('👍');
 				messageReaction.react('👎');
 			});
