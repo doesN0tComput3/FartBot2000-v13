@@ -4,6 +4,6 @@ module.exports = {
 	description: 'Boop!',
 	cooldown: 10,
 	execute(message) {
-		message.channel.send('boop!');
+		message.lineReply('boop!');
 	}
 };

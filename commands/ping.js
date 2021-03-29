@@ -3,6 +3,6 @@ module.exports = {
 	category: 'info',
 	description: 'Pong!',
 	execute(message) {
-		message.channel.send(`🏓 Pong!\nLatency is ${Date.now() - message.createdTimestamp}ms`);
+		message.lineReply(`🏓 Pong!\nLatency is ${Date.now() - message.createdTimestamp}ms`);
 	}
 };

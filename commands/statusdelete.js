@@ -11,8 +11,8 @@ module.exports = {
 	args: true,
 	execute(message, args) {
 		// Return if author isn't a mod/server owner
-		if (!message.member.id === '697506619545747569') return message.channel.send(`❌ ${message.author} you not kitten/broey so no`);
-		if (!message.member.roles.cache.some(r => r.id === '773966213171642379')) return message.channel.send(`❌ ${message.author} you not kitten/broey so no`);
+		if (!message.member.id === '697506619545747569') return message.lineReply(`❌ ${message.author} you not kitten/broey so no`);
+		if (!message.member.roles.cache.some(r => r.id === '773966213171642379')) return message.lineReply(`❌ ${message.author} you not kitten/broey so no`);
 
 		// Get status and statusType
 		const statusType = args[0];
@@ -23,7 +23,7 @@ module.exports = {
 		// Writes changes to file
 		// Playing status
 		if (statusType === 'playing' || statusType === 'Playing') {
-			if (!statuses.playingStatus.includes(status)) return message.channel.send(`❌ **${status}** doesn't exist 😐`);
+			if (!statuses.playingStatus.includes(status)) return message.lineReply(`❌ **${status}** doesn't exist 😐`);
 
 			const statusIndex = statuses.playingStatus.indexOf(status);
 
@@ -35,10 +35,10 @@ module.exports = {
 				if (err) console.log(err);
 			});
 
-			message.channel.send(`✅ Successfully removed **${status}** from the **${statusType}** statuses!`);
+			message.lineReply(`✅ Successfully removed **${status}** from the **${statusType}** statuses!`);
 		// Listening statuses
 		} else if (statusType === 'listening' || statusType === 'Listening') {
-			if (!statuses.listeningStatus.includes(status)) return message.channel.send(`❌ **${status}** doesn't exist 😐`);
+			if (!statuses.listeningStatus.includes(status)) return message.lineReply(`❌ **${status}** doesn't exist 😐`);
 
 			const statusIndex = statuses.listeningStatus.indexOf(status);
 
@@ -50,10 +50,10 @@ module.exports = {
 				if (err) console.log(err);
 			});
 
-			message.channel.send(`✅ Successfully removed **${status}** from the **${statusType}** statuses!`);
+			message.lineReply(`✅ Successfully removed **${status}** from the **${statusType}** statuses!`);
 		// Watching statuses
 		} else if (statusType === 'watching' || statusType === 'Watching') {
-			if (!statuses.watchingStatus.includes(status)) return message.channel.send(`❌ **${status}** doesn't exist 😐`);
+			if (!statuses.watchingStatus.includes(status)) return message.lineReply(`❌ **${status}** doesn't exist 😐`);
 
 			const statusIndex = statuses.watchingStatus.indexOf(status);
 
@@ -65,10 +65,10 @@ module.exports = {
 				if (err) console.log(err);
 			});
 
-			message.channel.send(`✅ Successfully removed **${status}** from the **${statusType}** statuses!`);
+			message.lineReply(`✅ Successfully removed **${status}** from the **${statusType}** statuses!`);
 		// Returns if its not a valid status type
 		} else {
-			return message.channel.send(`❌ ${statusType} isn't a status type IDIOT\n\nvalid types are: ` + '`playing`, `listening`, and `watching`');
+			return message.lineReply(`❌ ${statusType} isn't a status type IDIOT\n\nvalid types are: ` + '`playing`, `listening`, and `watching`');
 		}
 	}
 };

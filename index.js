@@ -215,7 +215,7 @@ client.on('message', message => {
 	if (command.permissions) {
 		const authorPerms = message.channel.permissionsFor(message.author);
 		if (!authorPerms || !authorPerms.has(command.permissions)) {
-			return message.channel.send(`❌ You don't have the required permissions, ${message.author}!\nTry again when you're a kitten 🙄`);
+			return message.lineReply(`❌ You don't have the required permissions, ${message.author}!\nTry again when you're a kitten 🙄`);
 		}
 	}
 
@@ -227,7 +227,7 @@ client.on('message', message => {
 			reply += `\nThe proper usage would be: \`${config.prefix}${command.name} ${command.usage}\``;
 		}
 
-		return message.channel.send(reply);
+		return message.lineReply(reply);
 	}
 
 	// Try to execute the command, logs it, catches if theres an error
@@ -235,7 +235,7 @@ client.on('message', message => {
 		command.execute(message, args);
 	} catch (error) {
 		console.error(error);
-		message.channel.send(`❌ ${message.author} there was an error trying to do that :(`);
+		message.lineReply(`❌ ${message.author} there was an error trying to do that :(`);
 	}
 });
 

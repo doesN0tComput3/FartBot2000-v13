@@ -19,7 +19,7 @@ module.exports = {
 				channel.send(sayText, {
 					files: [fileUrl]
 				});
-				message.channel.send('✅ ok');
+				message.lineReply('✅ ok');
 			// If message has file ONLY
 			} else if (message.attachments.size === 1) {
 				const file = message.attachments.first();
@@ -29,17 +29,17 @@ module.exports = {
 				channel.send({
 					files: [fileUrl]
 				});
-				message.channel.send('✅ ok');
+				message.lineReply('✅ ok');
 			// If message only has text
 			} else {
 				channel.send(sayText);
-				message.channel.send('✅ ok');
+				message.lineReply('✅ ok');
 			}
 		// Non-dm
 		} else {
 			message.delete();
 			const sayText = args.join(' ');
-			message.channel.send(sayText);
+			message.lineReply(sayText);
 		}
 	}
 };

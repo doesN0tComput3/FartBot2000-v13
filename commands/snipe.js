@@ -7,7 +7,7 @@ module.exports = {
 	execute(message) {
 		// Get last deleted message
 		const msg = message.client.snipes.get(message.channel.id);
-		if (!msg) return message.channel.send('❌ there wasn\'t any messages to snipe sorry broski');
+		if (!msg) return message.lineReply('❌ there wasn\'t any messages to snipe sorry broski');
 
 		const embed = new Discord.MessageEmbed()
 			.setColor('RANDOM')
@@ -19,6 +19,6 @@ module.exports = {
 			embed.setImage(msg.image);
 		}
 
-		message.channel.send(embed);
+		message.lineReply(embed);
 	}
 };

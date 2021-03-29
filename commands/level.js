@@ -27,6 +27,6 @@ module.exports = {
 			.addField('XP', `**${currentXp} XP**`, true)
 			.setThumbnail(message.author.avatarURL())
 			.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
-		message.channel.send(embed);
+		message.lineReply(embed);
 	}
 };
