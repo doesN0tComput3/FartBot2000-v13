@@ -5,6 +5,7 @@ const Discord = require('discord.js');
 const config = require('./config.json');
 const xp = require('./xp.json');
 const statuses = require('./statuses.json');
+require('discord-reply');
 const client = new Discord.Client();
 const channel = client.channels.cache.find(channel => channel.id === '749084221024239717');
 const developing = false;
