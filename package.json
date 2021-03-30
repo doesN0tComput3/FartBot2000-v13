@@ -23,6 +23,5 @@
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/doesN0tComput3/FartBot2000.git"
-	},
-	"devDependencies": {}
+	}
 }
