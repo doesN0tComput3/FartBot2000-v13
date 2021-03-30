@@ -7,6 +7,7 @@ const xp = require('./xp.json');
 const statuses = require('./statuses.json');
 require('discord-reply');
 const mongo = require('./mongo');
+const levels = require('./levels');
 const client = new Discord.Client();
 const channel = client.channels.cache.find(channel => channel.id === '749084221024239717');
 const developing = false;
@@ -29,6 +30,8 @@ client.once('ready', async () => {
 			mongoose.connection.close();
 		}
 	});
+
+	levels(client);
 
 	if (developing === true) {
 		client.user.setPresence({ activity: { name: 'Orion fix me | !help', type: 'WATCHING' }, status: 'idle' });
@@ -162,48 +165,6 @@ client.on('messageUpdate', (oldMessage, newMessage) => {
 client.on('message', async message => {
 	// Return if the message is from a bot
 	if (message.author.bot) return;
-
-	// MongoDB XP System
-
-	// XP system
-	const xpAdd = Math.floor(Math.random() * 15) + 25;
-
-	if (!xp[message.author.id]) {
-		xp[message.author.id] = {
-			xp: 0,
-			level: 1
-		};
-	}
-
-	const currentXp = xp[message.author.id].xp;
-	const getNeededXP = (level) => level * 100;
-	const currentLevel = xp[message.author.id].level;
-	xp[message.author.id].xp = currentXp + xpAdd;
-	const needed = getNeededXP(currentLevel);
-
-	// Level up message
-	if (xp[message.author.id].xp >= needed) {
-		if (developing === true) {
-			// Do nothing
-		} else {
-			xp[message.author.id].level = currentLevel + 1;
-			const levelUpEmbed = new Discord.MessageEmbed()
-				.setColor('#39ff14')
-				.setTitle('**LEVEL UP!**')
-				.setDescription(`${message.author} just leveled up to **level ${currentLevel + 1}!**\nThey now need **${getNeededXP(currentLevel + 1)} XP** to level up.`)
-				.addField('XP', xp[message.author.id].xp)
-				.setThumbnail(`${message.author.avatarURL()}`)
-				.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
-
-			const xpChannel = message.client.channels.cache.find(channel => channel.id === '777761493285732362');
-			xpChannel.send(levelUpEmbed);
-		}
-	}
-
-	// Save stats to XP file
-	fs.writeFile('./xp.json', JSON.stringify(xp), (err) => {
-		if (err) console.log(err);
-	});
 
 	// Commands
 	// If the message doesn't start with a prefix, return
