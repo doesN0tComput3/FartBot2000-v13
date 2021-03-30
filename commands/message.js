@@ -20,6 +20,7 @@ module.exports = {
 			.setTitle('1 new message!')
 			.setDescription('You have one new message...')
 			.addField('**Message**', text, true)
+			.setTimestamp(message.createdAt)
 			.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 
 		message.client.users.cache.get(receiverId).send(textEmbed)
@@ -33,6 +34,7 @@ module.exports = {
 			.setTitle('Message sent!')
 			.setDescription(`Your message to ${receiver} has been sent.\n\n**Message:**\n${text}`)
 			.setThumbnail(`${receiver.avatarURL()}`)
+			.setTimestamp(message.createdAt)
 			.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 
 		message.author.send(senderEmbed);

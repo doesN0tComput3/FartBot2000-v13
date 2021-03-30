@@ -18,6 +18,7 @@ module.exports = {
 			.setTitle(`**How much does ${message.author.username} love ${person}?**`)
 			.setDescription(`**${message.author.username}** loves **${person}** this much:\n\n**${Math.floor(love)}%\n${loveLevel}**`)
 			.setThumbnail(message.author.avatarURL())
+			.setTimestamp(message.createdAt)
 			.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 
 		message.lineReply(embed);

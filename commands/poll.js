@@ -16,6 +16,7 @@ module.exports = {
 			.addField('**Question**', question, true)
 			.addField('**Poll Started By**', message.author)
 			.setThumbnail(message.author.avatarURL())
+			.setTimestamp(message.createdAt)
 			.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 
 		if (message.channel.type === 'dm') {

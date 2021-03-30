@@ -16,6 +16,7 @@ module.exports = {
 
 			const embed = new Discord.MessageEmbed()
 				.setThumbnail(message.author.avatarURL())
+				.setTimestamp(message.createdAt)
 				.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 
 			if (possibleAnswers[answer] === 'Rock') {
@@ -37,6 +38,7 @@ module.exports = {
 		} else if (choice === 'paper' || choice === 'Paper') {
 			const embed = new Discord.MessageEmbed()
 				.setThumbnail(message.author.avatarURL())
+				.setTimestamp(message.createdAt)
 				.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 
 			if (possibleAnswers[answer] === 'Rock') {
@@ -58,6 +60,7 @@ module.exports = {
 		} else if (choice === 'scissors' || choice === 'Scissors') {
 			const embed = new Discord.MessageEmbed()
 				.setThumbnail(message.author.avatarURL())
+				.setTimestamp(message.createdAt)
 				.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 
 			if (possibleAnswers[answer] === 'Rock') {

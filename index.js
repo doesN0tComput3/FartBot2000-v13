@@ -78,6 +78,7 @@ client.on('guildMemberAdd', member => {
 		.setTitle(`Welcome, ${member.username}!`)
 		.setDescription('Give them a warm welcome ig 🙄')
 		.setThumbnail(member.avatarURL())
+		.setTimestamp(member.joinedAt)
 		.setFooter('FartBot2000 | !help', client.user.avatarURL());
 
 	channel.send(welcomeEmbed);

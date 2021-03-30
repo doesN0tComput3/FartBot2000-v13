@@ -46,6 +46,7 @@ const addXP = async (guildId, userId, xpToAdd, message) => {
 					.setDescription(`${message.author} just leveled up to **level ${level}!**\nThey now need **${getNeededXP(level)} XP** to level up.`)
 					.addField('XP', xp)
 					.setThumbnail(`${message.author.avatarURL()}`)
+					.setTimestamp(message.createdAt)
 					.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 
 				const xpChannel = message.client.channels.cache.find(channel => channel.id === '777761493285732362');
