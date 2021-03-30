@@ -17,10 +17,12 @@
 		"discord-reply": "^0.1.2",
 		"discord.js": "^12.5.1",
 		"eslint": "^7.23.0",
+		"mongoose": "^5.12.2",
 		"ytdl-core": "^4.5.0"
 	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/doesN0tComput3/FartBot2000.git"
-	}
+	},
+	"devDependencies": {}
 }

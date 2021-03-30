@@ -6,9 +6,19 @@ const config = require('./config.json');
 const xp = require('./xp.json');
 const statuses = require('./statuses.json');
 require('discord-reply');
+const mongoose = require('mongoose');
+const mongo = require('./mongo');
 const client = new Discord.Client();
 const channel = client.channels.cache.find(channel => channel.id === '749084221024239717');
 const developing = false;
+
+// Connect to database
+mongoose.connect('mongodb+srv://orion:GSB0rglLmrETZpAL@data.mrttr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+	{ useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }).then(() => {
+	console.log('successfully connected to the database!');
+}).catch((err) => {
+	console.log(err);
+});
 
 // Find our commands
 client.commands = new Discord.Collection();
@@ -18,8 +28,16 @@ for (const file of commandFiles) {
 	client.commands.set(command.name, command);
 }
 // When the bot is on, log it in the console and set status
-client.once('ready', () => {
+client.once('ready', async () => {
 	console.log('hey i returned');
+
+	await mongo().then(mongoose => {
+		try {
+			console.log('connected to mongo');
+		} finally {
+			mongoose.connection.close();
+		}
+	});
 
 	if (developing === true) {
 		client.user.setPresence({ activity: { name: 'Orion fix me | !help', type: 'WATCHING' }, status: 'idle' });
@@ -150,11 +168,13 @@ client.on('messageUpdate', (oldMessage, newMessage) => {
 });
 
 // Where it all happens 😏
-client.on('message', message => {
+client.on('message', async message => {
 	// Return if the message is from a bot
 	if (message.author.bot) return;
 
-	// XP system
+	// MongoDB XP System
+
+	/* // XP system
 	const xpAdd = Math.floor(Math.random() * 15) + 25;
 
 	if (!xp[message.author.id]) {
@@ -192,7 +212,7 @@ client.on('message', message => {
 	// Save stats to XP file
 	fs.writeFile('./xp.json', JSON.stringify(xp), (err) => {
 		if (err) console.log(err);
-	});
+	}); */
 
 	// Commands
 	// If the message doesn't start with a prefix, return
