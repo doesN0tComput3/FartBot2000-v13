@@ -21,15 +21,20 @@ module.exports = {
 		const difference = nextLevelUp - userXp;
 
 		const embed = new Discord.MessageEmbed()
+			.setTitle(`${user}'s Stats`)
 			.setColor('RANDOM')
-			.setTitle(`${message.author.username}'s Stats`)
-			.setDescription(`You need **${difference} XP** until your next level up.`)
 			.addField('Level', `**${userLevel}**`, true)
 			.addField('XP', `**${userXp} XP**`, true)
-			.setThumbnail(message.author.avatarURL())
+			.setThumbnail(user.avatarURL())
 			.setTimestamp(message.createdAt)
 			.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 
+		if (user === message.mentions.users.first()) {
+			embed.setDescription(`They need **${difference} XP** until they can level up.`);
+
+		} else {
+			embed.setDescription(`You need **${difference} XP** until your next level up.`);
+		}
 		message.lineReply(embed);
 	}
 };
