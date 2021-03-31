@@ -67,3 +67,37 @@ const addXP = async (guildId, userId, xpToAdd, message) => {
 };
 
 module.exports.addXP = addXP;
+
+module.exports.getStats = async (guildId, userId) => {
+	return await mongo().then(async mongoose=> {
+		try {
+			const result = await profileSchema.findOne({
+				guildId,
+				userId
+			});
+
+			console.log('RESULT:', result);
+
+			let xp = 0;
+			let level = 1;
+
+			if (result) {
+				xp = result.xp;
+				level = result.level;
+			} else {
+				console.log('Inserting a document');
+
+				await new profileSchema({
+					guildId,
+					userId,
+					xp,
+					level
+				}).save();
+			}
+
+			return { xp, level };
+		} finally {
+			//
+		}
+	});
+};

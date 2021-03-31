@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const profileSchema = require('../schemas/profileschema');
+const levels = require('../levels');
 
 module.exports = {
 	name: 'stats',
@@ -12,10 +12,7 @@ module.exports = {
 		const userId = user.id;
 		const guildId = message.guild.id;
 
-		const stats = await profileSchema.findOneAndUpdate({
-			userId,
-			guildId
-		});
+		const stats = await levels.getStats(guildId, userId);
 
 		const userXp = stats.xp;
 		const userLevel = stats.level;
@@ -30,6 +27,7 @@ module.exports = {
 			.addField('Level', `**${userLevel}**`, true)
 			.addField('XP', `**${userXp} XP**`, true)
 			.setThumbnail(message.author.avatarURL())
+			.setTimestamp(message.createdAt)
 			.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 
 		message.lineReply(embed);
