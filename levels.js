@@ -11,6 +11,7 @@ const getNeededXP = (level) => level * 100;
 
 const addXP = async (guildId, userId, xpToAdd, message) => {
 	if (message.author.bot) return;
+	if (message.channel.type === 'dm') return;
 	await mongo().then(async (mongoose) => {
 		try {
 			const result = await profileSchema.findOneAndUpdate(
