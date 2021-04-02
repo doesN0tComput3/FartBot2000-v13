@@ -3,6 +3,7 @@ const Discord = require('discord.js');
 const profileSchema = require('./schemas/profileschema');
 module.exports = (client) => {
 	client.on('message', (message) => {
+		if (message.channel.type === 'dm') return;
 		const { guild, member } = message;
 		addXP(guild.id, member.id, Math.floor(Math.random() * 15) + 25, message);
 	});
