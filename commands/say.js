@@ -39,7 +39,7 @@ module.exports = {
 		} else {
 			message.delete();
 			const sayText = args.join(' ');
-			message.lineReply(sayText);
+			message.channel.send(sayText);
 		}
 	}
 };

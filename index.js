@@ -5,6 +5,7 @@ const Discord = require('discord.js');
 const config = require('./config.json');
 const statuses = require('./statuses.json');
 require('discord-reply');
+const unscramble = require('unscramble');
 const mongo = require('./mongo');
 const levels = require('./levels');
 const client = new Discord.Client();
@@ -163,6 +164,30 @@ client.on('messageUpdate', (oldMessage, newMessage) => {
 
 // Where it all happens 😏
 client.on('message', async message => {
+	// Unscrambler for Dank Memer
+	if (message.author.id === '270904126974590976' && message.content.includes('Scramble')) {
+		const wordFirstIndex = message.content.search('`');
+		if (!wordFirstIndex) return;
+
+		const word = message.content.substr(wordFirstIndex);
+
+		const unscrambledWords = unscramble(word);
+
+		if (unscrambledWords.includes('No results found.')) {
+			return;
+		} else {
+			const embed = new Discord.MessageEmbed()
+				.setColor('RANDOM')
+				.setTitle('Match(es) Found!')
+				.setDescription(`I found a match for a \`pls work\`.\nMatches: ${unscrambledWords.toString().replace(/,/g, ', ')}`)
+				.setTimestamp(message.createdAt)
+				.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
+
+			const channel = message.client.channels.cache.find(channel => channel.id === '828696824038555718');
+			channel.send('<@295016772245913600>', embed);
+		}
+	}
+
 	// Return if the message is from a bot
 	if (message.author.bot) return;
 
