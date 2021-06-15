@@ -16,6 +16,7 @@
 		"@discordjs/opus": "^0.3.3",
 		"discord-reply": "^0.1.2",
 		"discord.js": "^12.5.1",
+		"dotenv": "^10.0.0",
 		"eslint": "^7.23.0",
 		"mongoose": "^5.12.2",
 		"unscramble": "0.0.1-v",

@@ -2,7 +2,8 @@
 // Define variables
 const fs = require('fs');
 const Discord = require('discord.js');
-const config = require('./config.json');
+const configuration = require('./config.json');
+const { config } = require('dotenv');
 const statuses = require('./statuses.json');
 require('discord-reply');
 const unscramble = require('unscramble');
@@ -11,6 +12,8 @@ const levels = require('./levels');
 const client = new Discord.Client();
 const channel = client.channels.cache.find(channel => channel.id === '749084221024239717');
 const developing = false;
+
+config();
 
 // Find our commands
 client.commands = new Discord.Collection();
@@ -101,7 +104,7 @@ client.on('guildMemberRemove', member => {
 client.snipes = new Map();
 client.on('messageDelete', message => {
 	if (message.author.bot) return;
-	if (message.content.startsWith(config.prefix)) return;
+	if (message.content.startsWith(configuration.prefix)) return;
 	// Save message info
 	client.snipes.set(message.channel.id, {
 		content: message.content,
@@ -193,11 +196,11 @@ client.on('message', async message => {
 
 	// Commands
 	// If the message doesn't start with a prefix, return
-	if (!message.content.startsWith(config.prefix)) return;
+	if (!message.content.startsWith(configuration.prefix)) return;
 
 	// Args handler
 	// Get args and command
-	const args = message.content.slice(config.prefix.length).trim().split(/ +/);
+	const args = message.content.slice(configuration.prefix.length).trim().split(/ +/);
 	const commandName = args.shift().toLowerCase();
 
 	const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
@@ -222,7 +225,7 @@ client.on('message', async message => {
 		let reply = `❌ You didn't provide all the required info, ${message.author}`;
 
 		if (command.usage) {
-			reply += `\nThe proper usage would be: \`${config.prefix}${command.name} ${command.usage}\``;
+			reply += `\nThe proper usage would be: \`${configuration.prefix}${command.name} ${command.usage}\``;
 		}
 
 		return message.lineReply(reply);
@@ -238,4 +241,4 @@ client.on('message', async message => {
 });
 
 // Finally, log into the bot
-client.login(config.token);
+client.login(process.env.TOKEN);
