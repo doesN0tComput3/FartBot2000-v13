@@ -35,6 +35,6 @@ module.exports = {
 		} else {
 			embed.setDescription(`You need **${difference} XP** until your next level up.`);
 		}
-		message.lineReply(embed);
+		message.lineReply({ embeds: [embed] });
 	}
 }; */

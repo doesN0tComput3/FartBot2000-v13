@@ -22,12 +22,12 @@ module.exports = {
 		if (message.channel.type === 'dm') {
 			const channel = message.client.channels.cache.find(channel => channel.id === '749084221024239717');
 
-			channel.send(pollEmbed).then(messageReaction => {
+			channel.send({ embeds: [pollEmbed] }).then(messageReaction => {
 				messageReaction.react('👍');
 				messageReaction.react('👎');
 			});
 		} else {
-			message.channel.send(pollEmbed).then(messageReaction => {
+			message.channel.send({ embeds: [pollEmbed] }).then(messageReaction => {
 				messageReaction.react('👍');
 				messageReaction.react('👎');
 			});

@@ -49,7 +49,7 @@ const addXP = async (guildId, userId, xpToAdd, message) => {
 					.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 
 				const xpChannel = message.client.channels.cache.find(channel => channel.id === '777761493285732362');
-				xpChannel.send(levelUpEmbed);
+				xpChannel.send({ embeds: [levelUpEmbed] });
 
 				await profileSchema.updateOne(
 					{

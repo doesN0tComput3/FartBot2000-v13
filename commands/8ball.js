@@ -27,6 +27,6 @@ module.exports = {
 			embed.setColor('#ff0000');
 		}
 
-		message.lineReply(embed);
+		message.lineReply({ embeds: [embed] });
 	}
 };

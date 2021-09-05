@@ -22,6 +22,6 @@ module.exports = {
 			.setTimestamp(message.createdAt)
 			.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 
-		message.lineReply(embed);
+		message.lineReply({ embeds: [embed] });
 	}
 };

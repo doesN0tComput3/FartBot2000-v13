@@ -33,7 +33,7 @@ module.exports = {
 				embed.setDescription(`You chose **${choice},** and I chose **${possibleAnswers[answer]}. You win!**`);
 			}
 
-			message.lineReply(embed);
+			message.lineReply({ embeds: [embed] });
 
 		} else if (choice === 'paper' || choice === 'Paper') {
 			const embed = new Discord.MessageEmbed()
@@ -55,7 +55,7 @@ module.exports = {
 				embed.setDescription(`You chose **${choice},** and I chose **${possibleAnswers[answer]}. I win!**`);
 			}
 
-			message.lineReply(embed);
+			message.lineReply({ embeds: [embed] });
 
 		} else if (choice === 'scissors' || choice === 'Scissors') {
 			const embed = new Discord.MessageEmbed()
@@ -77,7 +77,7 @@ module.exports = {
 				embed.setDescription(`We both chose **${possibleAnswers[answer]}, it's a tie!**`);
 			}
 
-			message.lineReply(embed);
+			message.lineReply({ embeds: [embed] });
 		} else {
 			return message.lineReply('❌ PICK A CHOICE YOU DUMBASS (rock, paper, scissors)');
 		}

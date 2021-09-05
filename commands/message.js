@@ -30,7 +30,7 @@ module.exports = {
 					.setTimestamp(message.createdAt)
 					.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 
-				message.client.users.cache.get(receiverId).send(textEmbed)
+				message.client.users.cache.get(receiverId).send({ embeds: [textEmbed] })
 					.catch(error => {
 						message.author.send(`I couldn't send ${receiver} a message, most likely their dm's are off`);
 						console.log(error);
@@ -45,7 +45,7 @@ module.exports = {
 					.setTimestamp(message.createdAt)
 					.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 
-				message.author.send(senderEmbed);
+				message.author.send({ embeds: [senderEmbed] });
 			} else {
 				const textEmbed = new Discord.MessageEmbed()
 					.setColor('RANDOM')
@@ -55,7 +55,7 @@ module.exports = {
 					.setTimestamp(message.createdAt)
 					.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 
-				message.client.users.cache.get(receiverId).send(textEmbed)
+				message.client.users.cache.get(receiverId).send({ embeds: [textEmbed] })
 					.catch(error => {
 						message.author.send(`I couldn't send ${receiver} a message, most likely their dm's are off`);
 						console.log(error);
@@ -70,7 +70,7 @@ module.exports = {
 					.setTimestamp(message.createdAt)
 					.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 
-				message.author.send(senderEmbed);
+				message.author.send({ embeds: [senderEmbed] });
 			}
 		} else {
 			const textEmbed = new Discord.MessageEmbed()
@@ -81,7 +81,7 @@ module.exports = {
 				.setTimestamp(message.createdAt)
 				.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 
-			message.client.users.cache.get(receiverId).send(textEmbed)
+			message.client.users.cache.get(receiverId).send({ embeds: [textEmbed] })
 				.catch(error => {
 					message.author.send(`I couldn't send ${receiver} a message, most likely their dm's are off`);
 					console.log(error);
@@ -95,7 +95,7 @@ module.exports = {
 				.setTimestamp(message.createdAt)
 				.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 
-			message.author.send(senderEmbed);
+			message.author.send({ embeds: [senderEmbed] });
 		}
 	}
 };

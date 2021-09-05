@@ -87,7 +87,7 @@ client.on('guildMemberAdd', member => {
 		.setTimestamp(member.joinedAt)
 		.setFooter('FartBot2000 | !help', client.user.avatarURL());
 
-	channel.send(welcomeEmbed);
+	channel.send({ embeds: [welcomeEmbed] });
 });
 
 // Goodbye message
@@ -99,7 +99,7 @@ client.on('guildMemberRemove', member => {
 		.setThumbnail(member.avatarURL())
 		.setFooter('FartBot2000 | !help', client.user.avatarURL());
 
-	channel.send(goodbyeEmbed);
+	channel.send({ embeds: [goodbyeEmbed] });
 });
 
 // Deleted message
@@ -135,7 +135,7 @@ client.on('messageDelete', message => {
 		embed.setImage(image);
 	}
 	const channel = message.client.channels.cache.find(channel => channel.id === '800815475822821436');
-	channel.send(embed);
+	channel.send({ embeds: [embed] });
 });
 
 // Edited message logger
@@ -164,7 +164,7 @@ client.on('messageUpdate', (oldMessage, newMessage) => {
 
 	const channel = oldMessage.client.channels.cache.find(channel => channel.id === '800865975015833660');
 
-	channel.send(embed);
+	channel.send({ embeds: [embed] });
 });
 
 // Where it all happens 😏
@@ -189,7 +189,7 @@ client.on('message', async message => {
 				.setFooter('FartBot2000 | !help', message.client.user.avatarURL());
 
 			const channel = message.client.channels.cache.find(channel => channel.id === '828696824038555718');
-			channel.send('<@295016772245913600>', embed);
+			channel.send({ content: '<@295016772245913600>', embeds: [embed] });
 		}
 	}
 

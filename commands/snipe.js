@@ -19,6 +19,6 @@ module.exports = {
 			embed.setImage(msg.image);
 		}
 
-		message.lineReply(embed);
+		message.lineReply({ embeds: [embed] });
 	}
 };
