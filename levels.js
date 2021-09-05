@@ -1,4 +1,4 @@
-const mongo = require('./mongo');
+/* const mongo = require('./mongo');
 const Discord = require('discord.js');
 const profileSchema = require('./schemas/profileschema');
 module.exports = (client) => {
@@ -102,4 +102,4 @@ module.exports.getStats = async (guildId, userId) => {
 			//
 		}
 	});
-};
+}; */

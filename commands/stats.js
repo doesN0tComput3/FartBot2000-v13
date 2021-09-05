@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+/* const Discord = require('discord.js');
 const levels = require('../levels');
 
 module.exports = {
@@ -37,4 +37,4 @@ module.exports = {
 		}
 		message.lineReply(embed);
 	}
-};
+}; */

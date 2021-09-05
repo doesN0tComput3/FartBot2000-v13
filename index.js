@@ -3,14 +3,13 @@
 const fs = require('fs');
 const Discord = require('discord.js');
 const configuration = require('./config.json');
-const keepAlive = require('./server.js');
 const { config } = require('dotenv');
 const mySecret = process.env['TOKEN'];
 const statuses = require('./statuses.json');
 require('discord-reply');
 const unscramble = require('unscramble');
-const mongo = require('./mongo');
-const levels = require('./levels');
+// const mongo = require('./mongo');
+// const levels = require('./levels');
 const client = new Discord.Client();
 const channel = client.channels.cache.find(channel => channel.id === '749084221024239717');
 const developing = false;
@@ -28,7 +27,7 @@ for (const file of commandFiles) {
 client.once('ready', async () => {
 	console.log('hey i returned');
 
-	await mongo().then(mongoose => {
+	/* await mongo().then(mongoose => {
 		try {
 			console.log('connected to mongo');
 		} finally {
@@ -36,7 +35,7 @@ client.once('ready', async () => {
 		}
 	});
 
-	levels(client);
+	levels(client); */
 
 	if (developing === true) {
 		client.user.setPresence({ activity: { name: 'Orion fix me | !help', type: 'WATCHING' }, status: 'idle' });
@@ -241,9 +240,6 @@ client.on('message', async message => {
 		message.lineReply(`❌ ${message.author} there was an error trying to do that :(`);
 	}
 });
-
-// Keep bot alive
-keepAlive();
 
 // Finally, log into the bot
 client.login(process.env.TOKEN);

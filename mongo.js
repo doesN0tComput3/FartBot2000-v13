@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+/* const mongoose = require('mongoose');
 const mongoPath = 'mongodb+srv://orion:GSB0rglLmrETZpAL@data.mrttr.mongodb.net/FartBot2000?retryWrites=true&w=majority';
 
 module.exports = async () => {
@@ -7,4 +7,4 @@ module.exports = async () => {
 		useUnifiedTopology: true
 	});
 	return mongoose;
-};
+}; */

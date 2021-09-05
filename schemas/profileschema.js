@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+/* const mongoose = require('mongoose');
 
 const reqString = {
 	type: String,
@@ -18,4 +18,4 @@ const profileSchema = mongoose.Schema({
 	}
 });
 
-module.exports = mongoose.model('profiles', profileSchema);
+module.exports = mongoose.model('profiles', profileSchema); */
