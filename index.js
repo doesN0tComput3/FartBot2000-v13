@@ -10,7 +10,8 @@ require('discord-reply');
 const unscramble = require('unscramble');
 // const mongo = require('./mongo');
 // const levels = require('./levels');
-const client = new Discord.Client();
+const myIntents = new Discord.Intents(8067);
+const client = new Discord.Client({ intents: myIntents });
 const channel = client.channels.cache.find(channel => channel.id === '749084221024239717');
 const developing = false;
 
